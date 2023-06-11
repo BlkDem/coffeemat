@@ -14,7 +14,7 @@
 
 .card {
   border-radius: 0.75em;
-  cursor: pointer;
+  // cursor: pointer;
   height: calc($vertical-height / 2 - $topbar-height);
   position: relative;
   background-color: silver;
@@ -22,9 +22,9 @@
 
 .card-detail {
   border-radius: 0.75em;
-  cursor: pointer;
+  // cursor: pointer;
   height: calc($vertical-height - $topbar-height) - 80px;
-  width: calc($vertical-width / 2 - 16px);
+  width: calc($vertical-width / 2 - 32px);
   position: relative;
   background-color: silver;
 }

@@ -1,28 +1,26 @@
 <template>
   <div class="grid-2">
   <div class="card-detail">
-    <div class="card-content-detail" style="background-position: center; background-size: 120%;" :style="{
-          backgroundImage: `url(${require('@/assets/images/' + cardImage)})`
-        }">
+    <div class="card-content-detail" style="background-position: center; background-size: 160%;" :style="{
+          backgroundImage: `url(${require('@/assets/images/' + cardImage)})`}">
       <h2>{{ cardName }}</h2>
-      <div class="price">{{ cardPrice }} {{ cardCurrency }}</div>
+      <div class="price"></div>
     </div>
   </div>
 
   <div class="card-detail">
     <div class="card-content-detail" style="background-position: center; background-size: 120%;" :style="{
-          backgroundImage: `url(${require('@/assets/images/money.jpg')})`
-        }">
-      <h2>{{ payName }}</h2>
+          backgroundImage: `url(${require('@/assets/images/money.jpg')})` }">
+      <!-- <h2>{{ payName }}</h2> -->
       <div class="pay-method" style="background-position: center; background-size: 120%;" :style="{
-          backgroundImage: `url(${require('@/assets/images/cash.jpg')})`
-        }">
-
+          backgroundImage: `url(${require('@/assets/images/cash.jpg')})` }">
+          <h2>Cach</h2>
+          <div class="price">{{ cardPrice }} {{ cardCurrency }}</div>
       </div>
       <div class="pay-method" style="background-position: center; background-size: 120%;" :style="{
-          backgroundImage: `url(${require('@/assets/images/card.jpg')})`
-        }">
-
+          backgroundImage: `url(${require('@/assets/images/card.jpg')})`}">
+          <h2>Card</h2>
+          <div class="price">{{ cardPrice }} {{ cardCurrency }}</div>
       </div>
       <!-- <div class="price">{{ cardPrice }} {{ cardCurrency }}</div> -->
     </div>
@@ -78,9 +76,11 @@ export default (await import('vue')).defineComponent({
 }
 
 .pay-method {
-  width: 100%;
-  height: 190px;
+  cursor: pointer;
+  display: grid;
+  height: 192px;
   border-radius: 0.75em;
+  padding: 16px 16px;
   box-shadow: 0px 0px 16px var(--coffee-color);
-}
+  align-content: space-between;}
 </style>
