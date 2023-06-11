@@ -3,8 +3,7 @@
     <div id="cards">
         <DrinkCard  v-for="(card, key) in drinkCards" :key="key"
           :background-image="card.image"
-          :card-name="card.name"
-          :card-price="getPrice(card)"
+          :card-drink="card"
         >
         </DrinkCard>
     </div>
@@ -45,6 +44,10 @@ export default (await import('vue')).defineComponent({
 
     getPrice(card: DrinkCardType) {
       return `${card.price} ${card.currency}`
+    },
+
+    getRoute(card: DrinkCardType) {
+      return `/detail/id=${card.id}&name:${card.name}`
     },
 
     async loadCards() {

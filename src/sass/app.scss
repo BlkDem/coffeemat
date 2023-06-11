@@ -17,6 +17,15 @@ h1 {
   font-size: 2em;
 }
 
+a {
+  color: var(--main-color);
+  transition: all .2s;
+}
+
+a:active {
+  color: var(--coffee-color);
+}
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
