@@ -14,7 +14,7 @@
 
 <script lang="ts">
 
-import VerticalLayout from './components/layout/VerticalLayout.vue';
+import VerticalLayout from './layouts/VerticalLayout.vue';
 
 export default {
   components: {

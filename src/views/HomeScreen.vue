@@ -1,5 +1,37 @@
 <template>
   <div>
+    <div id="cards">
+  <div class="card">
+    <div class="card-content">
+      <i class="card-icon fa-regular fa-cat-space"></i>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-content">
+      <i class="card-icon fa-regular fa-croissant"></i>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-content">
+      <i class="card-icon fa-regular fa-fish-bones"></i>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-content">
+      <i class="card-icon fa-regular fa-pickleball"></i>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-content">
+      <i class="card-icon fa-regular fa-poo"></i>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-content">
+      <i class="card-icon fa-regular fa-tree-palm"></i>
+    </div>
+  </div>
+</div>
 
   </div>
 </template>
@@ -11,4 +43,8 @@
     }
   }
 </script>
+
+<style lang="scss">
+@import '@/sass/cards.scss';
+</style>
 
