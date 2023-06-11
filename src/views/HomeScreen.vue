@@ -1,50 +1,63 @@
 <template>
   <div>
     <div id="cards">
-  <div class="card">
-    <div class="card-content">
-      <i class="card-icon fa-regular fa-cat-space"></i>
+        <DrinkCard  v-for="(card, key) in drinkCards" :key="key"
+          :background-image="card.image"
+          :card-name="card.name"
+        >
+        </DrinkCard>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-content">
-      <i class="card-icon fa-regular fa-croissant"></i>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-content">
-      <i class="card-icon fa-regular fa-fish-bones"></i>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-content">
-      <i class="card-icon fa-regular fa-pickleball"></i>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-content">
-      <i class="card-icon fa-regular fa-poo"></i>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-content">
-      <i class="card-icon fa-regular fa-tree-palm"></i>
-    </div>
-  </div>
-</div>
-
   </div>
 </template>
 
 <script lang="ts">
-  export default {
-    mounted() {
-      console.log('Display mounted')
+
+import DrinkCard from '@/components/DrinkCard.vue';
+import { DrinkCardType, DrinkCardTypeResponse } from '../types';
+import axios from 'axios';
+
+
+export default (await import('vue')).defineComponent({
+
+  name: "card-list",
+
+  components: {
+    DrinkCard
+  },
+
+  data() {
+    return {
+      drinkCards: [] as DrinkCardType[],
+      abc: ''
+    }
+  },
+
+  // beforeMount() {
+
+  // },
+
+  mounted() {
+    console.log('Display mounted')
+    this.loadCards();
+  },
+
+  methods: {
+    async loadCards() {
+      await axios.get<any>('/repository/file/data.json',
+        {
+          headers: {
+            Accept: 'application/json',
+          },
+        },
+      )
+      .then(response => {
+        const {data} = response.data as DrinkCardTypeResponse;
+        console.log(data)
+        this.drinkCards = data
+      });
     }
   }
+})
 </script>
 
-<style lang="scss">
-@import '@/sass/cards.scss';
-</style>
 

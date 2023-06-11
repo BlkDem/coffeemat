@@ -2,10 +2,13 @@
   <div id="display">
     <div class="top">
       <div class="brand">
-
+        <img class="logo" src="@/assets/images/coffee-logo.png"/>
       </div>
       <div class="brand-name">
-        <h1>Выберите напиток</h1>
+        <TopMessage
+          :message="topMessage"
+        >
+        </TopMessage>
       </div>
     </div>
     <div class="layout">
@@ -21,6 +24,24 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+
+import TopMessage from '@/components/TopMessage.vue';
+
+export default {
+
+  components: {
+    TopMessage
+  },
+
+  data() {
+    return {
+      topMessage: 'Select a drink',
+    }
+  }
+}
+</script>
 
 
 <style scoped lang="scss">
@@ -41,10 +62,18 @@
   .top {
     display: flex;
     .brand {
+      display: flex;
+      justify-content: center;
       background-color: wheat;
       height: $topbar-height;
       width: 100px;
       margin-left: 32px;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin-top: 8px;
     }
 
     .brand-name {
