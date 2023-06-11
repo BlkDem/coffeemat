@@ -4,6 +4,7 @@
           backgroundImage: `url(${require('@/assets/images/' + backgroundImage)})`
         }">
       <h2>{{ cardName }}</h2>
+      <div class="price">{{ cardPrice }}</div>
     </div>
   </div>
 </template>
@@ -20,7 +21,13 @@ export default {
     cardName: {
       type: String,
       default: ''
-    }
+    },
+
+    cardPrice: {
+      type: String,
+      default: ''
+    },
+
   }
 }
 

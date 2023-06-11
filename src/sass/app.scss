@@ -14,22 +14,10 @@ h1 {
   margin: 0 16px;
   padding-top: 12px;
   text-shadow: 2px 2px var(--background-color);
+  font-size: 2em;
 }
 
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }

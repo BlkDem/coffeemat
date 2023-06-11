@@ -4,6 +4,7 @@
         <DrinkCard  v-for="(card, key) in drinkCards" :key="key"
           :background-image="card.image"
           :card-name="card.name"
+          :card-price="getPrice(card)"
         >
         </DrinkCard>
     </div>
@@ -28,7 +29,6 @@ export default (await import('vue')).defineComponent({
   data() {
     return {
       drinkCards: [] as DrinkCardType[],
-      abc: ''
     }
   },
 
@@ -42,6 +42,11 @@ export default (await import('vue')).defineComponent({
   },
 
   methods: {
+
+    getPrice(card: DrinkCardType) {
+      return `${card.price} ${card.currency}`
+    },
+
     async loadCards() {
       await axios.get<any>('/repository/file/data.json',
         {
@@ -51,8 +56,7 @@ export default (await import('vue')).defineComponent({
         },
       )
       .then(response => {
-        const {data} = response.data as DrinkCardTypeResponse;
-        console.log(data)
+        const { data } = response.data as DrinkCardTypeResponse;
         this.drinkCards = data
       });
     }

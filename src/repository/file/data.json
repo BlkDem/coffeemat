@@ -7,7 +7,7 @@
       "name": "Espresso",
       "description": "Very strong coffee",
       "cost": "120",
-      "currency": "RUB",
+      "currency": "₽",
       "image": "c1.jpg"
     },
     {
@@ -15,7 +15,7 @@
       "name": "Americano",
       "description": "Simple coffee",
       "cost": "110",
-      "currency": "RUB",
+      "currency": "₽",
       "image": "c2.jpg"
     },
     {
@@ -23,7 +23,7 @@
       "name": "Cappuccino",
       "description": "Cappuccino coffee",
       "cost": "100",
-      "currency": "RUB",
+      "currency": "₽",
       "image": "c3.jpg"
     },
     {
@@ -31,7 +31,7 @@
       "name": "Latte",
       "description": "Milk coffee",
       "cost": "150",
-      "currency": "RUB",
+      "currency": "₽",
       "image": "c4.jpg"
     },
     {
@@ -39,7 +39,7 @@
       "name": "Double Latte",
       "description": "Milk coffee",
       "cost": "280",
-      "currency": "RUB",
+      "currency": "₽",
       "image": "c1.jpg"
     },
     {
@@ -47,7 +47,7 @@
       "name": "Double Espresso",
       "description": "Very strong coffee",
       "cost": "200",
-      "currency": "RUB",
+      "currency": "₽",
       "image": "c1.jpg"
     }
   ]

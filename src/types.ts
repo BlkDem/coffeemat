@@ -3,7 +3,7 @@ export interface DrinkCardType {
   name: string;
   description: string;
   image: string;
-  cost: string;
+  price: string;
   currency: string;
 };
 

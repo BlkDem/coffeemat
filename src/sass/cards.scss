@@ -49,6 +49,34 @@
   inset: 1px;
   padding: 1em;
   position: absolute;
+  align-content: space-between;
+}
+
+.card h2 {
+  font-size: 1.8em;
+  margin: 0 0;
+  padding-top: 4px;
+  padding-left: 12px;
+  height: 42px;
+  text-shadow: 2px 2px var(--background-color);
+  background: var(--coffee-color);
+  background: -moz-linear-gradient(90deg, var(--coffee-color) 0%, rgba(255,255,255,.1) 100%);
+  background: -webkit-linear-gradient(90deg, var(--coffee-color) 0%, rgba(255,255,255,.1) 100%);
+  background: linear-gradient(90deg, var(--coffee-color) 0%, rgba(255,255,255,.1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#461f09",endColorstr="#ffffff",GradientType=1);
+}
+
+.card .price {
+  font-size: 3rem;
+  font-weight: 700;
+  height: 60px;
+  text-align: right;
+  padding-right: 16px;
+  background: rgba(255,255,255,.1);
+  background: -moz-linear-gradient(90deg, rgba(255,255,255,.1) 0%, var(--coffee-color) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(255,255,255,.1) 0%, var(--coffee-color) 100%);
+  background: linear-gradient(90deg, rgba(255,255,255,.1) 0%, var(--coffee-color) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#461f09",GradientType=1);
 }
 
 // @media(max-width: 1100px) {
