@@ -15,6 +15,7 @@
 import DrinkCard from '@/components/DrinkCard.vue';
 import { DrinkCardType, DrinkCardTypeResponse } from '../types';
 import axios from 'axios';
+import store from '@/store';
 
 
 export default (await import('vue')).defineComponent({
@@ -37,6 +38,7 @@ export default (await import('vue')).defineComponent({
 
   mounted() {
     console.log('Display mounted')
+    store.commit('caption', 'Select a drink')
     this.loadCards();
   },
 

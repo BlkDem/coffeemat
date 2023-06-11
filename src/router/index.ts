@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeScreen,
   },
   {
-    path: "/detail/id=:id&name=:name&image=:image&price=:price",
+    path: "/detail/id=:id&name=:name&image=:image&price=:price&currency=:currency",
     name: "detail",
     component: DrinkView,
     // route level code-splitting
