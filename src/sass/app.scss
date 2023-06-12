@@ -1,0 +1,31 @@
+@import "./const.scss";
+
+
+body, html {
+  margin: 0;
+  font-family: Tahoma, Helvetica, sans-serif;
+  background-color: var(--background-color);
+  color: var(--main-color);
+}
+
+h1 {
+  margin: 0 16px;
+  padding-top: 12px;
+  text-shadow: 2px 2px var(--background-color);
+  font-size: 2em;
+}
+
+a {
+  color: var(--main-color);
+  transition: all .2s;
+  text-decoration: none;
+}
+
+a:active {
+  color: var(--coffee-color);
+}
+
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

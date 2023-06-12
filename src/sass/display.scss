@@ -1,0 +1,11 @@
+#display {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  height: $vertical-height;
+  width: 1024px;
+  border: 4px solid silver;
+  background-image: url('@/assets/images/back.jpg');
+  background-repeat:no-repeat;
+  background-position: center center;
+}

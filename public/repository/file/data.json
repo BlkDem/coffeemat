@@ -1,0 +1,54 @@
+{
+  "success": "true",
+  "status": 200,
+  "data": [
+    {
+      "id": 0,
+      "name": "Espresso",
+      "description": "Very strong coffee",
+      "price": "120",
+      "currency": "₽",
+      "image": "c1.jpg"
+    },
+    {
+      "id": 1,
+      "name": "Americano",
+      "description": "Simple coffee",
+      "price": "110",
+      "currency": "₽",
+      "image": "c5.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Cappuccino",
+      "description": "Cappuccino coffee",
+      "price": "100",
+      "currency": "₽",
+      "image": "c3.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Latte",
+      "description": "Milk coffee",
+      "price": "150",
+      "currency": "₽",
+      "image": "c4.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Double Latte",
+      "description": "Milk coffee",
+      "price": "280",
+      "currency": "₽",
+      "image": "c2.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Double Espresso",
+      "description": "Very strong coffee",
+      "price": "200",
+      "currency": "₽",
+      "image": "c6.jpg"
+    }
+  ]
+}
