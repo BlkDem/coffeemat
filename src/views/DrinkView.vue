@@ -1,10 +1,6 @@
 <template>
   <DrinkCardDetail
     :card-id="($route.params?.id as string)"
-    :card-name="($route.params?.name as string)"
-    :card-price="($route.params?.price as string)"
-    :card-currency="($route.params?.currency as string)"
-    :card-image="($route.params?.image as string)"
   >
   </DrinkCardDetail>
 </template>

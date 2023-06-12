@@ -1,10 +1,7 @@
 <template>
-  <router-link :to="
-    '/detail/id=' + cardDrink?.id +
-    '&name=' + cardDrink?.name +
-    '&image=' + cardDrink?.image +
-    '&price=' + cardDrink?.price +
-    '&currency=' + cardDrink?.currency"
+  <router-link
+    :to="
+    '/detail/id=' + cardDrink?.id"
   >
   <div class="card">
     <div class="card-content" style="background-position: center; background-size: 120%;" :style="{

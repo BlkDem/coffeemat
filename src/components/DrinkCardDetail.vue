@@ -2,8 +2,8 @@
   <div class="grid-2">
   <div class="card-detail">
     <div class="card-content-detail" style="background-position: center; background-size: 160%;" :style="{
-          backgroundImage: `url(${require('@/assets/images/' + cardImage)})`}">
-      <h2>{{ cardName }}</h2>
+          backgroundImage: `url(${require('@/assets/images/' + drinkCard?.image)})`}">
+      <h2>{{ drinkCard.name }}</h2>
       <div class="price"></div>
     </div>
   </div>
@@ -18,7 +18,7 @@
         <div class="pay-method" style="background-position: center; background-size: 120%;" :style="{
           backgroundImage: `url(${require('@/assets/images/cash.jpg')})` }">
           <h2>Cash</h2>
-          <div class="price">{{ cardPrice }} {{ cardCurrency }}</div>
+          <div class="price">{{ drinkCard.price }} {{ drinkCard.currency }}</div>
         </div>
       </router-link>
 
@@ -26,7 +26,7 @@
         <div class="pay-method" style="background-position: center; background-size: 120%;" :style="{
           backgroundImage: `url(${require('@/assets/images/card.jpg')})`}">
           <h2>Card</h2>
-          <div class="price">{{ cardPrice }} {{ cardCurrency }}</div>
+          <div class="price">{{ drinkCard.price }} {{ drinkCard.currency }}</div>
         </div>
       </router-link>
 
@@ -40,36 +40,30 @@
 
 <script lang="ts">
 
+import store from '@/store';
+import { DrinkCardType } from '@/types';
+
 export default (await import('vue')).defineComponent({
 
   props: {
     cardId: {
       type: String,
     },
-
-    cardName: {
-      type: String || undefined,
-    },
-
-    cardPrice: {
-      type: String,
-    },
-
-    cardCurrency: {
-      type: String,
-    },
-
-    cardImage: {
-      type: String,
-    },
-
   },
 
   data() {
     return {
-      payName: 'Payment Methods'
+      payName: 'Payment Methods',
+
+      drinkCard: {} as DrinkCardType,
+
     }
-  }
+  },
+
+  created() {
+      this.drinkCard = store.state.drinkCards.filter(
+        (item: DrinkCardType) => item.id.toString()  === this.cardId)[0] as DrinkCardType;
+  },
 
 
 })

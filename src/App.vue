@@ -14,11 +14,10 @@
 
 <script lang="ts">
 
-// import store from './store';
-// import {mapActions} from 'vuex';
+import {mapActions} from 'vuex';
 import VerticalLayout from './layouts/VerticalLayout.vue';
 
-export default {
+export default (await import('vue')).defineComponent({
   components: {
     VerticalLayout
   },
@@ -31,12 +30,17 @@ export default {
     }
   },
 
+  async mounted() {
+      await this.getData();
+  },
+
   methods: {
-    // ...mapActions({
-    //   caption: 'caption'
-    // })
+    ...mapActions({
+      getData: 'getData'
+    }),
   }
-}
+
+})
 
 </script>
 
