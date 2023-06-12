@@ -12,16 +12,25 @@
     <div class="card-content-detail" style="background-position: center; background-size: 120%;" :style="{
           backgroundImage: `url(${require('@/assets/images/money.jpg')})` }">
       <!-- <h2>{{ payName }}</h2> -->
-      <div class="pay-method" style="background-position: center; background-size: 120%;" :style="{
+
+
+      <router-link :to="'/'">
+        <div class="pay-method" style="background-position: center; background-size: 120%;" :style="{
           backgroundImage: `url(${require('@/assets/images/cash.jpg')})` }">
           <h2>Cach</h2>
           <div class="price">{{ cardPrice }} {{ cardCurrency }}</div>
-      </div>
-      <div class="pay-method" style="background-position: center; background-size: 120%;" :style="{
+        </div>
+      </router-link>
+
+      <router-link :to="'/'">
+        <div class="pay-method" style="background-position: center; background-size: 120%;" :style="{
           backgroundImage: `url(${require('@/assets/images/card.jpg')})`}">
           <h2>Card</h2>
           <div class="price">{{ cardPrice }} {{ cardCurrency }}</div>
-      </div>
+        </div>
+      </router-link>
+
+
       <!-- <div class="price">{{ cardPrice }} {{ cardCurrency }}</div> -->
     </div>
   </div>
@@ -72,6 +81,7 @@ export default (await import('vue')).defineComponent({
 
 .grid-2 {
   display: grid;
+  gap: 1rem;
   grid-template-columns: repeat(2, 1fr);
 }
 

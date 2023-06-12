@@ -10,6 +10,13 @@
         >
         </TopMessage>
       </div>
+      <div class="back">
+        <router-link :to="'/'" v-if="$route.name !== 'HomeScreen'">
+          <!-- <div class="back" :class="{'opacity-0': $route.name === 'HomeScreen'}"> -->
+            <font-awesome-icon :icon="['fa', 'fa-circle-arrow-left']" size="2xl" />
+          <!-- </div> -->
+      </router-link>
+      </div>
     </div>
     <div class="layout">
       <div class="main">
@@ -51,7 +58,7 @@ export default {
   .layout {
     margin: $margin-default;
     .main {
-      width: $vertical-width;
+      // width: $vertical-width;
     }
 
     .info {
@@ -61,6 +68,7 @@ export default {
 
   .top {
     display: flex;
+    justify-content: space-between;
     .brand {
       display: flex;
       justify-content: center;
@@ -79,6 +87,19 @@ export default {
     .brand-name {
       font-size: 2rem;
     }
+  }
+
+  .back {
+    display: flex;
+    width: 80px;
+    font-size: 3em;
+    margin: 16px 32px;
+    cursor: default;
+  }
+
+  .opacity-0 {
+    opacity: 0;
+
   }
 
 </style>

@@ -5,10 +5,10 @@
   gap: 1em;
   grid-template-columns: repeat(3, 1fr);
   max-width: $vertical-width;
-  padding: 1em 0em;
+  padding: 1em .5em;
   place-self: center;
   position: relative;
-  width: calc(100% - 2em);
+  width: calc(100% - 1em);
   z-index: 2;
 }
 
@@ -24,7 +24,7 @@
   border-radius: 0.75em;
   // cursor: pointer;
   height: calc($vertical-height - $topbar-height) - 80px;
-  width: calc($vertical-width / 2 - 32px);
+  width: calc($vertical-width / 2 - 28px);
   position: relative;
   background-color: silver;
 }
