@@ -17,7 +17,7 @@
       <router-link :to="'/'">
         <div class="pay-method" style="background-position: center; background-size: 120%;" :style="{
           backgroundImage: `url(${require('@/assets/images/cash.jpg')})` }">
-          <h2>Cach</h2>
+          <h2>Cash</h2>
           <div class="price">{{ cardPrice }} {{ cardCurrency }}</div>
         </div>
       </router-link>

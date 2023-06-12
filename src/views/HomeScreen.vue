@@ -2,7 +2,6 @@
   <div>
     <div id="cards">
         <DrinkCard  v-for="(card, key) in drinkCards" :key="key"
-          :background-image="card.image"
           :card-drink="card"
         >
         </DrinkCard>
@@ -12,10 +11,12 @@
 
 <script lang="ts">
 
-import DrinkCard from '@/components/DrinkCard.vue';
-import { DrinkCardType, DrinkCardTypeResponse } from '../types';
 import axios from 'axios';
 import store from '@/store';
+import DrinkCard from '@/components/DrinkCard.vue';
+import { DrinkCardType, DrinkCardTypeResponse } from '../types';
+import { getData } from '@/services/DataRepositoryService';
+// import { loadData } from '@/repository/file/FileRepository';
 
 
 export default (await import('vue')).defineComponent({
@@ -32,28 +33,18 @@ export default (await import('vue')).defineComponent({
     }
   },
 
-  // beforeMount() {
-
-  // },
-
-  mounted() {
-    console.log('Display mounted')
+  async mounted() {
     store.commit('caption', 'Select a drink')
-    this.loadCards();
+    // this.drinkCards = await loadData();
+    this.drinkCards = await getData() as DrinkCardType[];
+    // this.loadData();
+    // console.log();
   },
 
   methods: {
 
-    getPrice(card: DrinkCardType) {
-      return `${card.price} ${card.currency}`
-    },
-
-    getRoute(card: DrinkCardType) {
-      return `/detail/id=${card.id}&name:${card.name}`
-    },
-
-    async loadCards() {
-      await axios.get<any>('/repository/file/data.json',
+    async loadData() {
+      await axios.get<DrinkCardTypeResponse>('/repository/file/data.json',
         {
           headers: {
             Accept: 'application/json',
@@ -63,6 +54,7 @@ export default (await import('vue')).defineComponent({
       .then(response => {
         const { data } = response.data as DrinkCardTypeResponse;
         this.drinkCards = data
+        return data;
       });
     }
   }

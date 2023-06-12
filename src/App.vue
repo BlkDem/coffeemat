@@ -14,8 +14,8 @@
 
 <script lang="ts">
 
-import store from './store';
-import {mapActions} from 'vuex';
+// import store from './store';
+// import {mapActions} from 'vuex';
 import VerticalLayout from './layouts/VerticalLayout.vue';
 
 export default {
@@ -31,15 +31,10 @@ export default {
     }
   },
 
-  mounted() {
-    console.log('Make layout...')
-    console.log(store)
-  },
-
   methods: {
-    ...mapActions({
-      caption: 'caption'
-    })
+    // ...mapActions({
+    //   caption: 'caption'
+    // })
   }
 }
 

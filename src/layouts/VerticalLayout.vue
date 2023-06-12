@@ -24,9 +24,7 @@
       </div>
 
       <div class="info">
-        <slot name="info">
-
-        </slot>
+        <slot name="info"></slot>
       </div>
     </div>
   </div>
