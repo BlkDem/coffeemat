@@ -96,6 +96,24 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#461f09",GradientType=1);
 }
 
+.left-gradient {
+  background: var(--coffee-color);
+  background: -moz-linear-gradient(90deg, var(--coffee-color) 0%, rgba(255,255,255,.1) 100%);
+  background: -webkit-linear-gradient(90deg, var(--coffee-color) 0%, rgba(255,255,255,.1) 100%);
+  background: linear-gradient(90deg, var(--coffee-color) 0%, rgba(255,255,255,.1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#461f09",endColorstr="#ffffff",GradientType=1);
+}
+
+.right-gradient {
+  background: rgba(255,255,255,.1);
+  background: -moz-linear-gradient(90deg, rgba(255,255,255,.1) 0%, var(--coffee-color) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(255,255,255,.1) 0%, var(--coffee-color) 100%);
+  background: linear-gradient(90deg, rgba(255,255,255,.1) 0%, var(--coffee-color) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#461f09",GradientType=1);
+}
+
+
+
 // @media(max-width: 1100px) {
 //   #cards {
 //     grid-template-columns: repeat(2, 1fr);
