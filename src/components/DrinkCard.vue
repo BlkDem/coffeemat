@@ -1,7 +1,6 @@
 <template>
   <router-link
-    :to="
-    '/detail/id=' + cardDrink?.id"
+    :to=" '/detail/id=' + cardDrink?.id"
   >
   <div class="card">
     <div class="card-content" style="background-position: center; background-size: 120%;" :style="{

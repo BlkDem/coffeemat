@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import createPersistedState from 'vuex-persistedstate'
 import { DrinkCardType } from "@/types";
 import { getData } from '@/services/DataRepositoryService';
 
@@ -49,5 +50,10 @@ export default createStore({
       commit('SET_CURRENT', commit);
     }
   },
+
   modules: {},
+
+  plugins:[
+    createPersistedState()
+  ],
 });

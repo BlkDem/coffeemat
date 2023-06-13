@@ -11,24 +11,13 @@
   <div class="card-detail">
     <div class="card-content-detail" style="background-position: center; background-size: 120%;" :style="{
           backgroundImage: `url(${require('@/assets/images/money.jpg')})` }">
-      <!-- <h2>{{ payName }}</h2> -->
 
+      <h2>{{ payName }}</h2>
 
-      <router-link :to="'/'">
-        <div class="pay-method" style="background-position: center; background-size: 120%;" :style="{
-          backgroundImage: `url(${require('@/assets/images/cash.jpg')})` }">
-          <h2>Cash</h2>
-          <div class="price">{{ drinkCard?.price }} {{ drinkCard?.currency }}</div>
-        </div>
-      </router-link>
+      <div class="sum left-gradient">
+        <h1>{{ drinkCard.price }} {{ drinkCard.currency }}</h1>
+      </div>
 
-      <router-link :to="'/payment/card/id=' + cardId">
-        <div class="pay-method" style="background-position: center; background-size: 120%;" :style="{
-          backgroundImage: `url(${require('@/assets/images/card.jpg')})`}">
-          <h2>Card</h2>
-          <div class="price">{{ drinkCard?.price }} {{ drinkCard?.currency }}</div>
-        </div>
-      </router-link>
 
     </div>
   </div>
@@ -52,7 +41,7 @@ export default (await import('vue')).defineComponent({
   data() {
     return {
 
-      payName: 'Payment Methods',
+      payName: 'Insert a payment card',
 
       drinkCard: {} as DrinkCardType,
 
@@ -62,6 +51,7 @@ export default (await import('vue')).defineComponent({
   created() {
       this.drinkCard = store.state.drinkCards.filter(
         (item: DrinkCardType) => item.id.toString()  === this.cardId)[0] as DrinkCardType;
+        console.log(this.drinkCard)
   },
 
 
@@ -69,7 +59,7 @@ export default (await import('vue')).defineComponent({
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/sass/cards.scss';
 
 .pay-method {
@@ -80,5 +70,17 @@ export default (await import('vue')).defineComponent({
   padding: 16px 16px;
   box-shadow: 0px 0px 16px var(--coffee-color);
   align-content: space-between;
+}
+
+h1 {
+  font-size: 8rem;
+  text-align: right;
+}
+
+.sum {
+  height: 215px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 </style>

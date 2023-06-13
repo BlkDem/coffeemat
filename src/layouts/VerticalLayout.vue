@@ -11,7 +11,7 @@
         </TopMessage>
       </div>
       <div class="back">
-        <router-link :to="'/'" v-if="$route.name !== 'HomeScreen'">
+        <router-link :to="'/'" v-if="$route?.name !== 'HomeScreen'">
           <!-- <div class="back" :class="{'opacity-0': $route.name === 'HomeScreen'}"> -->
             <font-awesome-icon :icon="['fa', 'fa-circle-arrow-left']" size="2xl" />
           <!-- </div> -->
@@ -34,7 +34,7 @@
 
 import TopMessage from '@/components/TopMessage.vue';
 
-export default {
+export default (await import('vue')).defineComponent({
 
   components: {
     TopMessage
@@ -45,7 +45,7 @@ export default {
       topMessage: 'Select a drink',
     }
   }
-}
+})
 </script>
 
 
