@@ -2,7 +2,9 @@
   <div id="display">
     <div class="top">
       <div class="brand">
-        <img class="logo" src="@/assets/images/coffee-logo.png"/>
+        <router-link to="/">
+          <img class="logo" src="@/assets/images/coffee-logo.png"/>
+        </router-link>
       </div>
       <div class="brand-name">
         <TopMessage

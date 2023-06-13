@@ -28,6 +28,8 @@ export default (await import('vue')).defineComponent({
 
   async mounted() {
     store.commit('caption', 'Select a drink')
+    store.commit('SET_MILK', 0)
+    store.commit('SET_SUGAR', 0)
   },
 
 })

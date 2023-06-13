@@ -6,10 +6,11 @@
       <h2>Your order</h2>
       <div>
         <h2>{{ drinkCard?.name }}</h2>
-        <h2 v-if="sugar>0">Sugar: +{{ sugar }}</h2>
-        <h2 v-if="milk>0">Milk: +{{ milk }}</h2>
+        <h3 v-if="sugar>0" class="left-gradient">Sugar: +{{ sugar }}</h3>
+        <h3 v-if="milk>0"  class="left-gradient">Milk: +{{ milk }}</h3>
 
       </div>
+      <!-- <h2></h2> -->
       <!-- <div class="price ">{{ drinkCard.description }}</div> -->
     </div>
   </div>
