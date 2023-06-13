@@ -23,10 +23,10 @@ export default (await import('vue')).defineComponent({
     }
   },
 
-  mounted() {
+  created() {
     this.drinkCard = store.state.drinkCards.filter(
         (item: DrinkCardType) => item.id.toString()  === this.$route.params?.id)[0] as DrinkCardType;
-    store.commit('caption', this.drinkCard.name)
+    store.commit('caption', 'Payment')
   },
 
 })

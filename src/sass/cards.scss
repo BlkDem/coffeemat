@@ -112,6 +112,15 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#461f09",GradientType=1);
 }
 
+.shadow{
+  filter: drop-shadow(0px 0px 2px var(--coffee-color));
+}
+
+.light-shadow{
+  filter: drop-shadow(0px 0px 2px var(--main-color));
+}
+
+
 
 
 // @media(max-width: 1100px) {

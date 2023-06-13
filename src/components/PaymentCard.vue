@@ -3,7 +3,9 @@
   <div class="card-detail">
     <div class="card-content-detail" style="background-position: center; background-size: 160%;" :style="{
           backgroundImage: `url(${require('@/assets/images/' + drinkCard?.image)})`}">
-      <h2>{{ drinkCard?.description }}</h2>
+      <h2>Your order</h2>
+      <!-- <h2>{{ drinkCard?.description }}</h2> -->
+
       <!-- <div class="price ">{{ drinkCard.description }}</div> -->
     </div>
   </div>

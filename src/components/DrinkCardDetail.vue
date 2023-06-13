@@ -5,6 +5,19 @@
           backgroundImage: `url(${require('@/assets/images/' + drinkCard?.image)})`}">
       <h2>{{ drinkCard?.description }}</h2>
       <!-- <div class="price ">{{ drinkCard.description }}</div> -->
+      <div>
+        <SelectCount
+          :component-caption="'Add sugar'"
+          :max="6"
+          :min="0"
+        ></SelectCount>
+        <SelectCount
+          :component-caption="'Add milk'"
+          :max="6"
+          :min="0"
+        ></SelectCount>
+      </div>
+
     </div>
   </div>
 
@@ -40,8 +53,13 @@
 
 import store from '@/store';
 import { DrinkCardType } from '@/types';
+import SelectCount from './SelectCount.vue';
 
 export default (await import('vue')).defineComponent({
+
+  components: {
+    SelectCount
+  },
 
   props: {
     cardId: {

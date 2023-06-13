@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HomeScreen from "../views/HomeScreen.vue";
+import SelectDrinkView from "../views/SelectDrinkView.vue";
 import DrinkView from "@/views/DrinkView.vue";
 import PaymentCardView from "@/views/PaymentCardView.vue";
 
@@ -7,7 +7,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "HomeScreen",
-    component: HomeScreen,
+    component: SelectDrinkView,
   },
   {
     path: "/detail/id=:id",
