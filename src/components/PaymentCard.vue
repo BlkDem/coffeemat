@@ -4,8 +4,12 @@
     <div class="card-content-detail" style="background-position: center; background-size: 160%;" :style="{
           backgroundImage: `url(${require('@/assets/images/' + drinkCard?.image)})`}">
       <h2>Your order</h2>
-      <!-- <h2>{{ drinkCard?.description }}</h2> -->
+      <div>
+        <h2>{{ drinkCard?.name }}</h2>
+        <h2 v-if="sugar>0">Sugar: +{{ sugar }}</h2>
+        <h2 v-if="milk>0">Milk: +{{ milk }}</h2>
 
+      </div>
       <!-- <div class="price ">{{ drinkCard.description }}</div> -->
     </div>
   </div>
@@ -15,11 +19,13 @@
           backgroundImage: `url(${require('@/assets/images/money.jpg')})` }">
 
       <h2>{{ payName }}</h2>
+      <div>
+        <h2>Sum to pay</h2>
 
-      <div class="sum left-gradient">
-        <h1>{{ drinkCard.price }} {{ drinkCard.currency }}</h1>
+        <div class="sum left-gradient">
+          <h1>{{ drinkCard.price }} {{ drinkCard.currency }}</h1>
+        </div>
       </div>
-
 
     </div>
   </div>
@@ -47,11 +53,18 @@ export default (await import('vue')).defineComponent({
 
       drinkCard: {} as DrinkCardType,
 
+      milk: 0,
+
+      sugar: 0
+
     }
   },
 
   created() {
-      this.drinkCard = store.state.drinkCards.filter(
+
+    this.milk = store.state.milk ?? 0;
+    this.sugar = store.state.sugar ?? 0;
+    this.drinkCard = store.state.drinkCards.filter(
         (item: DrinkCardType) => item.id.toString()  === this.cardId)[0] as DrinkCardType;
         console.log(this.drinkCard)
   },

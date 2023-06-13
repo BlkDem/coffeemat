@@ -10,8 +10,10 @@ export default createStore({
     },
 
     drinkCards: [],
-
     currentDrinkCard: Object,
+    milk: 0,
+    sugar: 0,
+
   },
   getters: {
     getCaption(state) {
@@ -20,6 +22,14 @@ export default createStore({
 
     getCards(state) {
       return state.drinkCards as DrinkCardType[];
+    },
+
+    milk(state) {
+      return state.milk;
+    },
+
+    sugar(state) {
+      return state.sugar;
     }
   },
   mutations: {
@@ -33,11 +43,28 @@ export default createStore({
 
     SET_CURRENT(state, value) {
       state.currentDrinkCard = value;
+    },
+
+    SET_MILK(state, value) {
+      state.milk = value;
+    },
+
+    SET_SUGAR(state, value) {
+      state.sugar = value;
     }
   },
   actions: {
+
     caption({commit}){
       commit('SET_USER', commit)
+    },
+
+    milk({commit}){
+      commit('SET_MILK', commit)
+    },
+
+    sugar({commit}){
+      commit('SET_SUGAR', commit)
     },
 
     async getData({commit}){

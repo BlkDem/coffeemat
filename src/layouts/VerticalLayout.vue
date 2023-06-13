@@ -11,11 +11,11 @@
         </TopMessage>
       </div>
       <div class="back">
-        <router-link :to="'/'" v-if="$route?.name !== 'HomeScreen'">
+        <a @click="$router.go(-1)" v-if="$route?.name !== 'HomeScreen'">
           <!-- <div class="back" :class="{'opacity-0': $route.name === 'HomeScreen'}"> -->
             <font-awesome-icon :icon="['fa', 'fa-circle-arrow-left']" size="2xl" />
           <!-- </div> -->
-      </router-link>
+        </a>
       </div>
     </div>
     <div class="layout">
@@ -56,7 +56,7 @@ export default (await import('vue')).defineComponent({
   .layout {
     margin: $margin-default;
     .main {
-      // width: $vertical-width;
+      width: inherit;
     }
 
     .info {

@@ -22,10 +22,20 @@
 </template>
 
 <script lang="ts">
+import store from '@/store';
+
 
 export default (await import('vue')).defineComponent({
 
+  emits: ['onChange'],
+
   props: {
+
+    componentName: {
+      type: String,
+      default: 'name',
+    },
+
     componentCaption: {
       type: String,
       default: 'Caption'
@@ -46,11 +56,17 @@ export default (await import('vue')).defineComponent({
 
   methods: {
     minusClick() {
-      if (this.value > 0) this.value--;
+      if (this.value > 0) {
+        this.value--;
+        this.$emit('onChange', this.componentName, this.value);
+      }
     },
 
     plusClick() {
-      if (this.value < this.Max) this.value++;
+      if (this.value < this.Max) {
+        this.value++;
+        this.$emit('onChange', this.componentName, this.value);
+      }
     },
 
   },
@@ -59,7 +75,13 @@ export default (await import('vue')).defineComponent({
     return {
       value: 0,
     }
-  }
+  },
+
+  beforeMount() {
+    const a = store.getters;
+    if(a) this.value = a[this.componentName] ?? 0
+  },
+
 })
 
 </script>

@@ -6,15 +6,19 @@
       <h2>{{ drinkCard?.description }}</h2>
       <!-- <div class="price ">{{ drinkCard.description }}</div> -->
       <div>
-        <SelectCount
+        <SelectCount ref="sugar"
           :component-caption="'Add sugar'"
+          :component-name="'sugar'"
           :max="6"
           :min="0"
+          @on-change="addonCountChange"
         ></SelectCount>
-        <SelectCount
+        <SelectCount ref="milk"
           :component-caption="'Add milk'"
+          :component-name="'milk'"
           :max="6"
           :min="0"
+          @on-change="addonCountChange"
         ></SelectCount>
       </div>
 
@@ -78,9 +82,16 @@ export default (await import('vue')).defineComponent({
   },
 
   created() {
+
       this.drinkCard = store.state.drinkCards.filter(
         (item: DrinkCardType) => item.id.toString()  === this.cardId)[0] as DrinkCardType;
   },
+
+  methods: {
+    addonCountChange(name: string, value: number) {
+      store.commit('SET_' + name.toUpperCase(), value);
+    }
+  }
 
 
 })
