@@ -7,16 +7,11 @@
         </router-link>
       </div>
       <div class="brand-name">
-        <TopMessage
-          :message="topMessage"
-        >
-        </TopMessage>
+        <TopMessage />
       </div>
       <div class="back">
         <a @click="$router.go(-1)" v-if="$route?.name !== 'HomeScreen'">
-          <!-- <div class="back" :class="{'opacity-0': $route.name === 'HomeScreen'}"> -->
-            <font-awesome-icon :icon="['fa', 'fa-circle-arrow-left']" size="2xl" />
-          <!-- </div> -->
+          <font-awesome-icon :icon="['fa', 'fa-circle-arrow-left']" size="2xl" />
         </a>
       </div>
     </div>
@@ -42,11 +37,6 @@ export default (await import('vue')).defineComponent({
     TopMessage
   },
 
-  data() {
-    return {
-      topMessage: 'Select a drink',
-    }
-  }
 })
 </script>
 

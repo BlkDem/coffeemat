@@ -106,6 +106,10 @@ h3 {
   padding-top: 8px;
 }
 
+h3::before {
+  content: '';
+}
+
 .select-color{
   color: var(--coffee-color);
 }

@@ -17,3 +17,9 @@ export default (await import('vue')).defineComponent({
 })
 
 </script>
+
+<style lang="scss" scoped>
+h1 {
+  color: var(--nums-color);
+}
+</style>

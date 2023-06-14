@@ -31,7 +31,7 @@
       <!-- <h2>{{ payName }}</h2> -->
 
 
-      <router-link :to="'/'">
+      <router-link :to="'/payment/cash/id=' + cardId">
         <div class="pay-method" style="background-position: center; background-size: 120%;" :style="{
           backgroundImage: `url(${require('@/assets/images/cash.jpg')})` }">
           <h2>Cash</h2>

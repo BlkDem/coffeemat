@@ -52,12 +52,11 @@ export default (await import('vue')).defineComponent({
   data() {
     return {
 
-      payName: 'Insert a payment card',
+      payName: 'Add money',
 
       drinkCard: {} as DrinkCardType,
 
       milk: 0,
-
       sugar: 0
 
     }
@@ -65,7 +64,7 @@ export default (await import('vue')).defineComponent({
 
   created() {
 
-    store.commit('caption', 'Payment Card');
+    store.commit('caption', 'Payment Cash');
 
     this.milk = store.state.milk ?? 0;
     this.sugar = store.state.sugar ?? 0;
