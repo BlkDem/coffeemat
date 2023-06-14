@@ -41,15 +41,27 @@
         </span>
       </li>
     </ul>
-
+    <CardReader
+      @success="onCardSuccess"
+      @error="onCardError"
+    />
+    <CashReader
+      @success="onCashSuccess"
+      @error="onCashError"
+    />
   </div>
 </template>
 
 <script lang="ts">
+
 import store from '@/store';
 import {mapActions} from 'vuex';
+import CardReader from './CardReader.vue';
+import CashReader from './CashReader.vue';
 
 export default (await import('vue')).defineComponent({
+
+  components: { CardReader, CashReader },
 
   data() {
     return {}
@@ -88,6 +100,24 @@ export default (await import('vue')).defineComponent({
       cashActive: 'cashActive',
       cardActive: 'cardActive',
     }),
+
+    onCardError() {
+      console.log('Payment error!');
+    },
+
+    onCardSuccess() {
+      console.log('Payment success!');
+    },
+
+    onCashError() {
+      console.log('Payment error!');
+    },
+
+    onCashSuccess() {
+      console.log('Payment success!');
+    },
+
+
   }
 
 })

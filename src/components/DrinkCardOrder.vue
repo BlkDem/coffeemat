@@ -1,6 +1,6 @@
 <template>
     <h2>Your order</h2>
-    <div class="coffee-cup shadow-blur-16">
+    <div class="coffee-cup shadow-blur-16 opacity-09">
         <font-awesome-icon :icon="['fas', 'mug-hot']" size="2xl"/>
     </div>
     <div>

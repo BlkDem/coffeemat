@@ -41,7 +41,7 @@ export default (await import('vue')).defineComponent({
 
   components: {
     TopMessage,
-    EmulatorState
+    EmulatorState,
   },
 
 })
