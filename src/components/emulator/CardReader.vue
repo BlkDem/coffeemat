@@ -29,7 +29,6 @@ export default (await import('vue')).defineComponent({
       cardValue: 'cardValue',
     }),
 
-
     succes() {
       this.$emit('success');
     },
@@ -37,8 +36,11 @@ export default (await import('vue')).defineComponent({
     error() {
       this.$emit('error');
     },
+  },
 
-  }
+  beforeUnmount() {
+    this.cardValue(0);
+  },
 })
 
 </script>

@@ -50,8 +50,11 @@ export default (await import('vue')).defineComponent({
     addMoney(value: number) {
       this.cashValue(store.state.emulator.cashReader.value + value)
     }
+  },
 
-  }
+  beforeUnmount() {
+      this.cashValue(0);
+  },
 })
 
 </script>
@@ -59,7 +62,7 @@ export default (await import('vue')).defineComponent({
 <style lang="scss" scoped>
 .device{
   width: 350px;
-  height: 200px;
+  height: 222px;
   border: 4px solid;
   border-radius: 16px;
 }

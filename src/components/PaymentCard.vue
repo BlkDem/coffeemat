@@ -75,9 +75,10 @@ export default (await import('vue')).defineComponent({
 
     this.milk = store.state.milk ?? 0;
     this.sugar = store.state.sugar ?? 0;
-    this.drinkCard = store.state.drinkCards.filter(
+    this.drinkCard = store.state.currentDrinkCard ??
+      store.state.drinkCards.filter(
         (item: DrinkCardType) => item.id.toString()  === this.cardId)[0] as DrinkCardType;
-        console.log(this.drinkCard)
+        // console.log(this.drinkCard)
   },
 
   beforeUnmount() {
