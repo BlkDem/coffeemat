@@ -5,6 +5,23 @@
           backgroundImage: `url(${require('@/assets/images/' + drinkCard?.image)})`}">
       <h2>{{ drinkCard?.description }}</h2>
       <!-- <div class="price ">{{ drinkCard.description }}</div> -->
+      <div>
+        <SelectCount ref="sugar"
+          :component-caption="'Sugar'"
+          :component-name="'sugar'"
+          :max="6"
+          :min="0"
+          @on-change="addonCountChange"
+        ></SelectCount>
+        <SelectCount ref="milk"
+          :component-caption="'Milk'"
+          :component-name="'milk'"
+          :max="6"
+          :min="0"
+          @on-change="addonCountChange"
+        ></SelectCount>
+      </div>
+
     </div>
   </div>
 
@@ -14,7 +31,7 @@
       <!-- <h2>{{ payName }}</h2> -->
 
 
-      <router-link :to="'/'">
+      <router-link :to="'/payment/cash/id=' + cardId">
         <div class="pay-method" style="background-position: center; background-size: 120%;" :style="{
           backgroundImage: `url(${require('@/assets/images/cash.jpg')})` }">
           <h2>Cash</h2>
@@ -40,8 +57,13 @@
 
 import store from '@/store';
 import { DrinkCardType } from '@/types';
+import SelectCount from './SelectCount.vue';
 
 export default (await import('vue')).defineComponent({
+
+  components: {
+    SelectCount
+  },
 
   props: {
     cardId: {
@@ -60,9 +82,16 @@ export default (await import('vue')).defineComponent({
   },
 
   created() {
+
       this.drinkCard = store.state.drinkCards.filter(
         (item: DrinkCardType) => item.id.toString()  === this.cardId)[0] as DrinkCardType;
   },
+
+  methods: {
+    addonCountChange(name: string, value: number) {
+      store.commit('SET_' + name.toUpperCase(), value);
+    }
+  }
 
 
 })

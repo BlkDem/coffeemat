@@ -1,22 +1,20 @@
 <template>
-  <DrinkCardDetail
+  <PaymentCash
     :card-id="($route.params?.id as string) ?? '0'"
   >
-  </DrinkCardDetail>
+  </PaymentCash>
 </template>
 
 <script lang="ts">
 
 import store from '@/store';
-import DrinkCardDetail from '../components/DrinkCardDetail.vue';
+import PaymentCash from '../components/PaymentCash.vue';
 import { DrinkCardType } from '@/types';
 
 export default (await import('vue')).defineComponent({
 
-  name: 'drink-card-detail',
-
   components: {
-    DrinkCardDetail
+    PaymentCash
   },
 
   data() {
@@ -26,16 +24,10 @@ export default (await import('vue')).defineComponent({
   },
 
   created() {
-      this.drinkCard = store.state.drinkCards.filter(
+    this.drinkCard = store.state.drinkCards.filter(
         (item: DrinkCardType) => item.id.toString()  === this.$route.params?.id)[0] as DrinkCardType;
-      store.commit('caption', this.drinkCard?.name ?? 'undefined')
-      store.commit('SET_CURRENT', this.drinkCard ?? 'undefined')
-
+    store.commit('caption', 'Payment')
   },
-
-  // beforeUnmount() {
-  //     this.drinkCard = {} as DrinkCardType;
-  // },
 
 })
 

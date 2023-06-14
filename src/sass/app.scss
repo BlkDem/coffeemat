@@ -15,6 +15,19 @@ h1 {
   font-size: 2em;
 }
 
+h3 {
+  margin: 0 0px;
+  padding: 8px 8px;
+  padding-left: 24px;
+  text-shadow: 2px 2px var(--background-color);
+  font-size: 1.5em;
+}
+
+h3::before {
+  content: '•';
+  margin-right: 12px;
+}
+
 a {
   color: var(--main-color);
   transition: all .2s;
@@ -34,4 +47,28 @@ a:active {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(2, 1fr);
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.coffee-cup {
+  font-size: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 280px;
+}
+
+.shadow{
+  filter: drop-shadow(0px 0px 2px var(--coffee-color));
+}
+
+.shadow-blur-16{
+  filter: drop-shadow(0px 0px 16px var(--coffee-color));
+}
+
+.light-shadow{
+  filter: drop-shadow(0px 0px 2px var(--main-color));
 }

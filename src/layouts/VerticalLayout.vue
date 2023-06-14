@@ -2,20 +2,17 @@
   <div id="display">
     <div class="top">
       <div class="brand">
-        <img class="logo" src="@/assets/images/coffee-logo.png"/>
+        <router-link to="/">
+          <img class="logo" src="@/assets/images/coffee-logo.png"/>
+        </router-link>
       </div>
       <div class="brand-name">
-        <TopMessage
-          :message="topMessage"
-        >
-        </TopMessage>
+        <TopMessage />
       </div>
       <div class="back">
-        <router-link :to="'/'" v-if="$route?.name !== 'HomeScreen'">
-          <!-- <div class="back" :class="{'opacity-0': $route.name === 'HomeScreen'}"> -->
-            <font-awesome-icon :icon="['fa', 'fa-circle-arrow-left']" size="2xl" />
-          <!-- </div> -->
-      </router-link>
+        <a @click="$router.go(-1)" v-if="$route?.name !== 'HomeScreen'">
+          <font-awesome-icon :icon="['fa', 'fa-circle-arrow-left']" size="2xl" />
+        </a>
       </div>
     </div>
     <div class="layout">
@@ -24,27 +21,29 @@
       </div>
 
       <div class="info">
-        <slot name="info"></slot>
+        <slot name="info">
+
+        </slot>
       </div>
     </div>
+  </div>
+  <div class="emulator-panel">
+    <EmulatorState/>
   </div>
 </template>
 
 <script lang="ts">
 
 import TopMessage from '@/components/TopMessage.vue';
+import EmulatorState from '@/components/emulator/EmulatorState.vue';
 
 export default (await import('vue')).defineComponent({
 
   components: {
-    TopMessage
+    TopMessage,
+    EmulatorState
   },
 
-  data() {
-    return {
-      topMessage: 'Select a drink',
-    }
-  }
 })
 </script>
 
@@ -56,7 +55,7 @@ export default (await import('vue')).defineComponent({
   .layout {
     margin: $margin-default;
     .main {
-      // width: $vertical-width;
+      width: inherit;
     }
 
     .info {
@@ -100,4 +99,11 @@ export default (await import('vue')).defineComponent({
 
   }
 
+  .emulator-panel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 16px 16px;
+    width: 400px;
+  }
 </style>
