@@ -81,11 +81,13 @@ export default (await import('vue')).defineComponent({
 
   beforeUnmount() {
     this.cashActive(false);
+    // this.cashValue(0);
   },
 
   methods: {
     ...mapActions({
       cashActive: 'cashActive',
+      cashValue: 'cashValue',
     }),
   },
 

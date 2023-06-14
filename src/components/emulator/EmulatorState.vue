@@ -46,8 +46,8 @@
       @error="onCardError"
     />
     <CashReader
-      @success="onCashSuccess"
-      @error="onCashError"
+      @success="onCashPay"
+      @error="onCashCancel"
     />
   </div>
 </template>
@@ -109,12 +109,12 @@ export default (await import('vue')).defineComponent({
       console.log('Payment success!');
     },
 
-    onCashError() {
-      console.log('Payment error!');
+    onCashCancel() {
+      console.log('Payment cancel!');
     },
 
-    onCashSuccess() {
-      console.log('Payment success!');
+    onCashPay() {
+      console.log('Payment in progress!');
     },
 
 
@@ -125,6 +125,7 @@ export default (await import('vue')).defineComponent({
 </script>
 
 <style lang="scss" scoped>
+
 .active {
   color: green;
 }

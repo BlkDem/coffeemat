@@ -8,8 +8,8 @@
       <button @click="addMoney(200)" class="c-button">200</button>
     </div>
     <div class="buttons">
-      <button @click="succes" class="c-button">Success</button>
-      <button @click="error"  class="c-button">Error</button>
+      <button @click="pay" class="c-button">Pay</button>
+      <button @click="cancel"  class="c-button">Cancel</button>
     </div>
 </div>
 </template>
@@ -21,7 +21,7 @@ import { mapActions } from 'vuex';
 
 export default (await import('vue')).defineComponent({
 
-  emits: ['success', 'error'],
+  emits: ['pay', 'cancel'],
 
   computed: {
     visible() {
@@ -39,12 +39,12 @@ export default (await import('vue')).defineComponent({
       cashValue: 'cashValue',
     }),
 
-    succes() {
-      this.$emit('success');
+    pay() {
+      this.$emit('pay');
     },
 
-    error() {
-      this.$emit('error');
+    cancel() {
+      this.$emit('cancel');
     },
 
     addMoney(value: number) {
@@ -52,9 +52,6 @@ export default (await import('vue')).defineComponent({
     }
   },
 
-  beforeUnmount() {
-      this.cashValue(0);
-  },
 })
 
 </script>
