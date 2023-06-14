@@ -104,6 +104,6 @@ export default (await import('vue')).defineComponent({
     right: 0;
     top: 0;
     margin: 16px 16px;
-    width: 300px;
+    width: 400px;
   }
 </style>
