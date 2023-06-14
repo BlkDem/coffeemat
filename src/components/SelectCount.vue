@@ -1,6 +1,6 @@
 <template>
-  <div class="component">
-    <h3 class="left-gradient">{{ componentCaption }}</h3>
+  <div class="component left-gradient">
+    <h3 class="">{{ componentCaption }}</h3>
     <div class="select-row">
       <a @click="minusClick" class="pointer">
         <div class="shadow">
@@ -91,7 +91,7 @@ export default (await import('vue')).defineComponent({
   margin: 8px 16px;
   padding: 8px 8px;
   font-size: 2rem;
-}
+  border-radius: 16px;}
 .select-row{
   display: flex;
   flex-direction: row;
@@ -102,8 +102,10 @@ export default (await import('vue')).defineComponent({
 h3 {
   text-align: center;
   height: 3.5rem;
-  margin: 8px 8px;
-  padding-top: 8px;
+  /* margin: 8px 0px; */
+  margin-bottom: -24px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 h3::before {

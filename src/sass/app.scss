@@ -52,3 +52,23 @@ a:active {
 .pointer {
   cursor: pointer;
 }
+
+.coffee-cup {
+  font-size: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 280px;
+}
+
+.shadow{
+  filter: drop-shadow(0px 0px 2px var(--coffee-color));
+}
+
+.shadow-blur-16{
+  filter: drop-shadow(0px 0px 16px var(--coffee-color));
+}
+
+.light-shadow{
+  filter: drop-shadow(0px 0px 2px var(--main-color));
+}

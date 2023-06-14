@@ -17,6 +17,9 @@
     <div class="card-content-detail" style="background-position: center; background-size: 120%;" :style="{
           backgroundImage: `url(${require('@/assets/images/money.jpg')})` }">
           <h2>{{ payName }}</h2>
+          <div class="coffee-cup shadow-blur-16">
+            <font-awesome-icon :icon="['far', 'credit-card']" beat-fade size="xl"/>
+          </div>
           <PaySum
             :pay-name="'Sum to pay'"
             :pay-sum="drinkCard?.price"

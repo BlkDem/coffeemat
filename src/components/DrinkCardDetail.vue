@@ -7,14 +7,14 @@
       <!-- <div class="price ">{{ drinkCard.description }}</div> -->
       <div>
         <SelectCount ref="sugar"
-          :component-caption="'Add sugar'"
+          :component-caption="'Sugar'"
           :component-name="'sugar'"
           :max="6"
           :min="0"
           @on-change="addonCountChange"
         ></SelectCount>
         <SelectCount ref="milk"
-          :component-caption="'Add milk'"
+          :component-caption="'Milk'"
           :component-name="'milk'"
           :max="6"
           :min="0"

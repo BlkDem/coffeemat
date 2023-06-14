@@ -21,20 +21,27 @@
       </div>
 
       <div class="info">
-        <slot name="info"></slot>
+        <slot name="info">
+
+        </slot>
       </div>
     </div>
+  </div>
+  <div class="emulator-panel">
+    <EmulatorState/>
   </div>
 </template>
 
 <script lang="ts">
 
 import TopMessage from '@/components/TopMessage.vue';
+import EmulatorState from '@/components/emulator/EmulatorState.vue';
 
 export default (await import('vue')).defineComponent({
 
   components: {
-    TopMessage
+    TopMessage,
+    EmulatorState
   },
 
 })
@@ -92,4 +99,11 @@ export default (await import('vue')).defineComponent({
 
   }
 
+  .emulator-panel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 16px 16px;
+    width: 300px;
+  }
 </style>
