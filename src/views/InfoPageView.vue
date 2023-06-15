@@ -1,10 +1,7 @@
 <template>
   <div class="info-page">
     <div class="info-page-detail">
-      <slot>
-        123
-      </slot>
-
+      <h1>{{ infoText }}</h1>
     </div>
   </div>
 </template>
@@ -27,6 +24,12 @@ export default (await import('vue')).defineComponent({
     store.commit('caption', this.information);
   },
 
+  computed: {
+    infoText() {
+      return store.state.infoText;
+    }
+  }
+
 })
 
 </script>
@@ -48,6 +51,10 @@ export default (await import('vue')).defineComponent({
   justify-content: center;
   align-items: center;
   font: inherit;
+}
+
+h1 {
+  font-size: 5rem;
 }
 
 </style>

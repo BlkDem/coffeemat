@@ -44,9 +44,18 @@ export default createStore({
     },
 
     infoText: '',
+    machine: {
+      active: false,
+      progress: 0,
+    }
+
   },
 
   getters: {
+
+    getProgress(state) {
+      return state.machine.progress;
+    },
 
     getCaption(state) {
       return state.page?.caption;
@@ -99,6 +108,15 @@ export default createStore({
   },
 
   mutations: {
+
+    machineProgress(state, value) {
+      state.machine.progress = value
+    },
+
+    machineActive(state, value) {
+      state.machine.active = value
+    },
+
     caption(state, value) {
       state.page.caption = value
     },
@@ -164,6 +182,14 @@ export default createStore({
 
     textInfo({commit}, value){
       commit('setInfoText', value)
+    },
+
+    machineProgress({commit}, value){
+      commit('machineProgress', value)
+    },
+
+    machineActive({commit}, value){
+      commit('machineActive', value)
     },
 
     caption({commit}){

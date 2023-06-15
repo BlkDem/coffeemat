@@ -40,6 +40,14 @@
           {{ emulator.cashReader.value }}
         </span>
       </li>
+      <li>Machine.Active:
+        <span :class="{'active': machineActive, 'not-active': !machineActive}">
+          {{ machineActive }}
+        </span>
+      </li>
+      <li>Machine.Progress:
+          {{ machineProgress }}
+      </li>
     </ul>
     <CardReader
       @success="onCardSuccess"
@@ -90,6 +98,14 @@ export default (await import('vue')).defineComponent({
 
     emulator() {
       return store.state.emulator;
+    },
+
+    machineProgress() {
+      return store.state.machine.progress;
+    },
+
+    machineActive() {
+      return store.state.machine.active;
     }
   },
 
@@ -108,22 +124,31 @@ export default (await import('vue')).defineComponent({
       cardActive: 'cardActive',
       cardStatus: 'cardStatus',
       cashStatus: 'cashStatus',
+      textInfo: 'textInfo',
     }),
 
     onCardError() {
       e1.payCardError((value) => {
         console.log(value);
         setTimeout(()=>{
+          this.textInfo('Card payment error!');
           router.push('/info');
           this.cardStatus('Insert payment card');
         }, 2000)
       })
     },
 
-    onCardSuccess() {
-      e1.payCardSuccess((value) => {
-        console.log(value);
+    async onCardSuccess() {
+      await e1.payCardSuccess((value) => {
+        console.log('oga',value);
       })
+
+      router.push('/prepare');
+
+      await e1.prepareDrink((value)=>{
+        console.log('drink ready:', value);
+      })
+
     },
 
     onCashCancel() {

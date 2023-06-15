@@ -23,10 +23,11 @@ export class Emulator {
   //bank transaction
   async processCardPay() {
 
-    store.state.emulator.cardReader.status = 'Begin transaction...';
+    store.state.emulator.cardReader.status = 'Connecting to bank...';
+
     const step1 = await new Promise ((resolve) => {
       setTimeout(()=> {
-        store.state.emulator.cardReader.status = 'Connecting to bank...';
+        store.state.emulator.cardReader.status = 'Status 200 Ok';
         resolve(true);
       }, 1000);
     });
@@ -38,17 +39,29 @@ export class Emulator {
 
     const step2 = await new Promise ((resolve) => {
       setTimeout(()=> {
-        store.state.emulator.cardReader.status = 'Status 200 Ok';
+        store.state.emulator.cardReader.status = 'Begin transaction...';
         resolve(true);
       }, 1000);
     });
 
     if (!step2) {
-      console.error('Error bank answer')
+      console.error('Error bank transaction')
       return false;
     }
 
     const step3 = await new Promise ((resolve) => {
+      setTimeout(()=> {
+        store.state.emulator.cardReader.status = 'Success';
+        resolve(true);
+      }, 1000);
+    });
+
+    if (!step3) {
+      console.error('Error bank answer')
+      return false;
+    }
+
+    const step4 = await new Promise ((resolve) => {
       setTimeout(()=> {
         const cr = store.state.emulator.cardReader;
         cr.status = 'Ready to accept card';
@@ -65,6 +78,28 @@ export class Emulator {
     return true;
   }
 
+  async prepareDrink(ready: (value: boolean) => void) {
+    store.commit('machineActive', true);
+
+    try {
+      for (let i=0; i<10; i++) {
+        await new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(true);
+          }, 1000)
+        }).then(()=>{
+          console.log('progress:', i);
+          store.commit('machineProgress', i);
+        })
+      }
+    } catch(error) {
+      store.commit('machineActive', false);
+      console.error(error);
+    }
+    store.commit('machineActive', false);
+    return ready(true);
+  }
+
   payCashPay(cb: (result: boolean) => void) {
 
     return cb(true);
@@ -75,23 +110,17 @@ export class Emulator {
     return cb('pay cash cancel');
   }
 
-  payCardSuccess(cb: (value: string) => void) {
+  async payCardSuccess(cb: (value: string) => void) {
     try {
       console.log('before process pay')
-      const process = this.processCardPay();
+      await this.processCardPay();
 
-      process.then(result => {
-        console.log(result)
-      })
+      store.state.emulator.cardReader.active = false;
 
       return cb('pay card success');
 
     } catch(error) {
-
-      console.error(error)
-
-    } finally {
-      // store.state.emulator.cardReader.active = false;
+      console.error('paying card process error:', error)
     }
 
   }

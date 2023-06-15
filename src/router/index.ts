@@ -4,6 +4,7 @@ import SelectedDrinkView from "@/views/SelectedDrinkView.vue";
 import PaymentCardView from "@/views/PaymentCardView.vue";
 import PaymentCashView from "@/views/PaymentCashView.vue";
 import InfoPageView from '@/views/InfoPageView.vue';
+import PrepareView from '@/views/PrepareView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -30,6 +31,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/info",
     name: "information",
     component: InfoPageView,
+  },
+  {
+    path: "/prepare",
+    name: "information",
+    component: PrepareView,
   },
 ];
 
