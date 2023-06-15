@@ -6,8 +6,8 @@
 
       <DrinkCardOrder
         :card-name="drinkCard?.name"
-        :milk="milk"
-        :sugar="sugar"
+        :milk="addons.milk"
+        :sugar="addons.sugar"
       ></DrinkCardOrder>
 
     </div>
@@ -17,7 +17,9 @@
     <div class="card-content-detail" style="background-position: center; background-size: 120%;" :style="{
           backgroundImage: `url(${require('@/assets/images/money.jpg')})` }">
           <h2>{{ payName }}</h2>
-          <h1>{{ cash }}</h1>
+          <div class="coffee-cup shadow-blur-16">
+            <font-awesome-icon :icon="['far', 'credit-card']" beat-fade size="xl"/>
+          </div>
           <PaySum
             :pay-name="'Sum to pay'"
             :pay-sum="drinkCard?.price"
@@ -35,7 +37,7 @@
 import store from '@/store';
 import { mapActions } from 'vuex';
 import { DrinkCardType } from '@/types';
-import DrinkCardOrder from './DrinkCardOrder.vue';
+import DrinkCardOrder from '@/components/DrinkCardOrder.vue';
 import PaySum from './PaySum.vue';
 
 export default (await import('vue')).defineComponent({
@@ -54,24 +56,25 @@ export default (await import('vue')).defineComponent({
   data() {
     return {
 
-      payName: 'Add money',
+      payName: 'Insert payment card',
 
       drinkCard: {} as DrinkCardType,
 
-      milk: 0,
-      sugar: 0
-
+      addons: {
+        milk: 0,
+        sugar: 0
+      }
     }
   },
 
   created() {
 
-    store.commit('caption', 'Payment Cash');
+    store.commit('caption', 'Payment Card');
 
-    this.cashActive(true);
+    this.cardActive(true);
 
-    this.milk = store.state.milk ?? 0;
-    this.sugar = store.state.sugar ?? 0;
+    this.addons.milk = store.state.addons.milk ?? 0;
+    this.addons.sugar = store.state.addons.sugar ?? 0;
 
     this.drinkCard = store.state.currentDrinkCard ??
       store.state.data.filter(
@@ -79,21 +82,16 @@ export default (await import('vue')).defineComponent({
   },
 
   beforeUnmount() {
-    this.cashActive(false);
+    this.cardActive(false);
   },
 
   methods: {
     ...mapActions({
-      cashActive: 'cashActive',
-      cashValue: 'cashValue',
+      cardActive: 'cardActive',
     }),
-  },
 
-  computed: {
-    cash() {
-      return store.state.emulator.cashReader.value;
-    }
   }
+
 
 })
 
@@ -102,9 +100,5 @@ export default (await import('vue')).defineComponent({
 <style lang="scss" scoped>
 @import '@/sass/cards.scss';
 
-h1 {
-  text-align: right;
-  font-size: 8rem;
-}
 
 </style>

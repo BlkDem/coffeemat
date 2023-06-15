@@ -1,10 +1,10 @@
 <template>
   <div>
     <div id="cards">
-        <DrinkCard  v-for="(card, key) in data" :key="key"
+        <GoodCard  v-for="(card, key) in data" :key="key"
           :card-drink="card"
         >
-        </DrinkCard>
+        </GoodCard>
     </div>
   </div>
 </template>
@@ -12,12 +12,12 @@
 <script lang="ts">
 
 import store from '@/store';
-import DrinkCard from '@/components/DrinkCard.vue';
+import GoodCard from '@/components/GoodCard.vue';
 
 export default (await import('vue')).defineComponent({
 
   components: {
-    DrinkCard
+    GoodCard
   },
 
   computed: {

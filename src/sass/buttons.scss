@@ -1,0 +1,35 @@
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.c-button {
+  appearance: none;
+  display: flex;
+  font-size: 1.5rem;
+  // font-weight: 700;
+  background: var(--coffee-color);
+  color: var(--main-color);
+  margin: 16px 8px;
+  padding: 8px 16px;
+  font-size: 16px;
+  border: 2px solid var(--main-color);
+  border-radius: 4px;
+  height: 48px;
+  width: 150px;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-button[disabled], .c-button:hover[disabled] {
+  background-color: gray;
+}
+
+.c-button:hover {
+  background: #1d49aa;
+}
+
+.c-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px #cbd6ee;
+}

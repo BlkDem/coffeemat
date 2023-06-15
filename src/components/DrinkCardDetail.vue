@@ -57,7 +57,7 @@
 
 import store from '@/store';
 import { DrinkCardType } from '@/types';
-import SelectCount from './SelectCount.vue';
+import SelectCount from '@/components/common/SelectCount.vue';
 
 export default (await import('vue')).defineComponent({
 

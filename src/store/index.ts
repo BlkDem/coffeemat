@@ -19,25 +19,50 @@ export default createStore({
     currentDrinkCard: {} as DrinkCardType,
 
     //addons
-    milk: 0,
-    sugar: 0,
+    addons: {
+      milk: 0,
+      sugar: 0,
+    },
 
     //emulator
     emulator: {
       cardReader: {
         active: false,
-        value: 0,
+        value: '',
+        status: ''
       },
       cashReader: {
         active: false,
-        value: 0,
+        value: '',
+        status: ''
       },
+    },
+
+    payment: {
+      success: false,
+      amount: 0
+    },
+
+    infoText: '',
+    machine: {
+      active: false,
+      progress: 0,
     }
+
   },
 
   getters: {
+
+    getProgress(state) {
+      return state.machine.progress;
+    },
+
     getCaption(state) {
       return state.page?.caption;
+    },
+
+    getInfoText(state) {
+      return state.infoText;
     },
 
     getCards(state) {
@@ -45,15 +70,23 @@ export default createStore({
     },
 
     milk(state) {
-      return state.milk;
+      return state.addons.milk;
     },
 
     sugar(state) {
-      return state.sugar;
+      return state.addons.sugar;
     },
 
     emulatorState(state) {
       return state;
+    },
+
+    cardReaderStatus(state) {
+      return state.emulator.cardReader.status;
+    },
+
+    cashReaderStatus(state) {
+      return state.emulator.cashReader.status;
     },
 
     cardReaderState(state) {
@@ -75,6 +108,15 @@ export default createStore({
   },
 
   mutations: {
+
+    machineProgress(state, value) {
+      state.machine.progress = value
+    },
+
+    machineActive(state, value) {
+      state.machine.active = value
+    },
+
     caption(state, value) {
       state.page.caption = value
     },
@@ -89,11 +131,15 @@ export default createStore({
     },
 
     SET_MILK(state, value) {
-      state.milk = value;
+      state.addons.milk = value;
     },
 
     SET_SUGAR(state, value) {
-      state.sugar = value;
+      state.addons.sugar = value;
+    },
+
+    setInfoText(state, value) {
+      state.infoText = value
     },
 
     setEmulator(state, value) {
@@ -116,6 +162,14 @@ export default createStore({
       state.emulator.cardReader.value = value
     },
 
+    setCardReaderStatus(state, value) {
+      state.emulator.cardReader.status = value
+    },
+
+    setCashReaderStatus(state, value) {
+      state.emulator.cashReader.status = value
+    },
+
   },
 
   actions: {
@@ -124,6 +178,18 @@ export default createStore({
       return await getData(value).then((data)=>{
           commit('SET_DATA', data)
       })
+    },
+
+    textInfo({commit}, value){
+      commit('setInfoText', value)
+    },
+
+    machineProgress({commit}, value){
+      commit('machineProgress', value)
+    },
+
+    machineActive({commit}, value){
+      commit('machineActive', value)
     },
 
     caption({commit}){
@@ -156,6 +222,14 @@ export default createStore({
 
     cardActive({ commit }, value){
       commit('setCardReaderActive', value)
+    },
+
+    cardStatus({ commit }, value){
+      commit('setCardReaderStatus', value)
+    },
+
+    cashStatus({ commit }, value){
+      commit('setCashReaderStatus', value)
     },
 
   },

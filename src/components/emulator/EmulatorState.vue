@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="emulator">
     <h2>Current Drink</h2>
     <ul  v-if="currentDrink?.id >= 0">
       <li>
@@ -31,14 +31,22 @@
         </span>
       </li>
       <li>CardReader.Value:
-        <span :class="{'active': emulator.cardReader.value > 0, 'not-active': !(emulator.cardReader.value > 0)}">
+        <span :class="{'active': emulator.cardReader.value != '', 'not-active': (!emulator.cardReader.value)}">
           {{ emulator.cardReader.value }}
         </span>
       </li>
       <li>CashReader.Value:
-        <span :class="{'active': emulator.cashReader.value > 0, 'not-active': !(emulator.cashReader.value > 0)}">
+        <span :class="{'active': emulator.cashReader.value != '', 'not-active': (!emulator.cashReader.value)}">
           {{ emulator.cashReader.value }}
         </span>
+      </li>
+      <li>Machine.Active:
+        <span :class="{'active': machineActive, 'not-active': !machineActive}">
+          {{ machineActive }}
+        </span>
+      </li>
+      <li>Machine.Progress:
+          {{ machineProgress }}
       </li>
     </ul>
     <CardReader
@@ -46,8 +54,9 @@
       @error="onCardError"
     />
     <CashReader
-      @success="onCashPay"
-      @error="onCashCancel"
+      @pay="onCashPay"
+      @cancel="onCashCancel"
+      @add-cash="onAddCash"
     />
   </div>
 </template>
@@ -58,13 +67,19 @@ import store from '@/store';
 import {mapActions} from 'vuex';
 import CardReader from './CardReader.vue';
 import CashReader from './CashReader.vue';
+import { Emulator } from './emulator';
+import router from '@/router';
+
+let e1 = new Emulator();
 
 export default (await import('vue')).defineComponent({
 
   components: { CardReader, CashReader },
 
   data() {
-    return {}
+    return {
+      // emulator: {}
+    }
   },
 
   computed: {
@@ -74,15 +89,23 @@ export default (await import('vue')).defineComponent({
     },
 
     milk() {
-      return store.state.milk;
+      return store.state.addons.milk;
     },
 
     sugar() {
-      return store.state.sugar;
+      return store.state.addons.sugar;
     },
 
     emulator() {
       return store.state.emulator;
+    },
+
+    machineProgress() {
+      return store.state.machine.progress;
+    },
+
+    machineActive() {
+      return store.state.machine.active;
     }
   },
 
@@ -99,24 +122,50 @@ export default (await import('vue')).defineComponent({
       cashValue: 'cashValue',
       cashActive: 'cashActive',
       cardActive: 'cardActive',
+      cardStatus: 'cardStatus',
+      cashStatus: 'cashStatus',
+      textInfo: 'textInfo',
     }),
 
     onCardError() {
-      console.log('Payment error!');
+      e1.payCardError((value) => {
+        console.log(value);
+        setTimeout(()=>{
+          this.textInfo('Card payment error!');
+          router.push('/info');
+          this.cardStatus('Insert payment card');
+        }, 2000)
+      })
     },
 
-    onCardSuccess() {
-      console.log('Payment success!');
+    async onCardSuccess() {
+      await e1.payCardSuccess((value) => {
+        console.log('oga',value);
+      })
+
+      router.push('/prepare');
+
+      await e1.prepareDrink((value)=>{
+        console.log('drink ready:', value);
+      })
+
     },
 
     onCashCancel() {
-      console.log('Payment cancel!');
+      e1.payCashCancel((value) => {
+        console.log(value);
+      })
     },
 
     onCashPay() {
-      console.log('Payment in progress!');
+      e1.payCashPay((value) => {
+        console.log(value);
+      })
     },
 
+    onAddCash(value: number) {
+      this.cashValue(parseInt(store.state.emulator.cashReader.value) + value)
+    }
 
   }
 
@@ -126,6 +175,9 @@ export default (await import('vue')).defineComponent({
 
 <style lang="scss" scoped>
 
+.emulator {
+  font-family: 'Robo';
+}
 .active {
   color: green;
 }

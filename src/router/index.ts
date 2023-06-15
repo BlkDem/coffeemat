@@ -1,19 +1,21 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import SelectDrinkView from "../views/SelectDrinkView.vue";
-import DrinkView from "@/views/DrinkView.vue";
+import ChooseDrinkView from "../views/ChooseDrinkView.vue";
+import SelectedDrinkView from "@/views/SelectedDrinkView.vue";
 import PaymentCardView from "@/views/PaymentCardView.vue";
 import PaymentCashView from "@/views/PaymentCashView.vue";
+import InfoPageView from '@/views/InfoPageView.vue';
+import PrepareView from '@/views/PrepareView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "HomeScreen",
-    component: SelectDrinkView,
+    component: ChooseDrinkView,
   },
   {
     path: "/detail/id=:id",
     name: "detail",
-    component: DrinkView,
+    component: SelectedDrinkView,
   },
   {
     path: "/payment/card/id=:id",
@@ -24,6 +26,16 @@ const routes: Array<RouteRecordRaw> = [
     path: "/payment/cash/id=:id",
     name: "cash payment",
     component: PaymentCashView,
+  },
+  {
+    path: "/info",
+    name: "information",
+    component: InfoPageView,
+  },
+  {
+    path: "/prepare",
+    name: "information",
+    component: PrepareView,
   },
 ];
 
