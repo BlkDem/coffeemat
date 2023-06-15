@@ -19,8 +19,10 @@ export default createStore({
     currentDrinkCard: {} as DrinkCardType,
 
     //addons
-    milk: 0,
-    sugar: 0,
+    addons: {
+      milk: 0,
+      sugar: 0,
+    },
 
     //emulator
     emulator: {
@@ -34,12 +36,24 @@ export default createStore({
         value: '',
         status: ''
       },
-    }
+    },
+
+    payment: {
+      success: false,
+      amount: 0
+    },
+
+    infoText: '',
   },
 
   getters: {
+
     getCaption(state) {
       return state.page?.caption;
+    },
+
+    getInfoText(state) {
+      return state.infoText;
     },
 
     getCards(state) {
@@ -47,11 +61,11 @@ export default createStore({
     },
 
     milk(state) {
-      return state.milk;
+      return state.addons.milk;
     },
 
     sugar(state) {
-      return state.sugar;
+      return state.addons.sugar;
     },
 
     emulatorState(state) {
@@ -99,11 +113,15 @@ export default createStore({
     },
 
     SET_MILK(state, value) {
-      state.milk = value;
+      state.addons.milk = value;
     },
 
     SET_SUGAR(state, value) {
-      state.sugar = value;
+      state.addons.sugar = value;
+    },
+
+    setInfoText(state, value) {
+      state.infoText = value
     },
 
     setEmulator(state, value) {
@@ -142,6 +160,10 @@ export default createStore({
       return await getData(value).then((data)=>{
           commit('SET_DATA', data)
       })
+    },
+
+    textInfo({commit}, value){
+      commit('setInfoText', value)
     },
 
     caption({commit}){

@@ -48,6 +48,7 @@
     <CashReader
       @pay="onCashPay"
       @cancel="onCashCancel"
+      @add-cash="onAddCash"
     />
   </div>
 </template>
@@ -59,13 +60,18 @@ import {mapActions} from 'vuex';
 import CardReader from './CardReader.vue';
 import CashReader from './CashReader.vue';
 import { Emulator } from './emulator';
+import router from '@/router';
+
+let e1 = new Emulator();
 
 export default (await import('vue')).defineComponent({
 
   components: { CardReader, CashReader },
 
   data() {
-    return {}
+    return {
+      // emulator: {}
+    }
   },
 
   computed: {
@@ -75,11 +81,11 @@ export default (await import('vue')).defineComponent({
     },
 
     milk() {
-      return store.state.milk;
+      return store.state.addons.milk;
     },
 
     sugar() {
-      return store.state.sugar;
+      return store.state.addons.sugar;
     },
 
     emulator() {
@@ -100,32 +106,41 @@ export default (await import('vue')).defineComponent({
       cashValue: 'cashValue',
       cashActive: 'cashActive',
       cardActive: 'cardActive',
+      cardStatus: 'cardStatus',
+      cashStatus: 'cashStatus',
     }),
 
     onCardError() {
-      console.log('Payment error!');
+      e1.payCardError((value) => {
+        console.log(value);
+        setTimeout(()=>{
+          router.push('/info');
+          this.cardStatus('Insert payment card');
+        }, 2000)
+      })
     },
 
     onCardSuccess() {
-      console.log('Cmd: Payment success!');
+      e1.payCardSuccess((value) => {
+        console.log(value);
+      })
     },
 
     onCashCancel() {
-      console.log('Cmd: Payment cancel!');
-      const e = new Emulator();
-      e.payCashCancel(() => {
-        console.log('pay cash cancel callback');
+      e1.payCashCancel((value) => {
+        console.log(value);
       })
     },
 
     onCashPay() {
-      console.log('Payment in progress!');
-      const e = new Emulator();
-      e.payCashPay(() => {
-        console.log('pay cash success callback');
+      e1.payCashPay((value) => {
+        console.log(value);
       })
     },
 
+    onAddCash(value: number) {
+      this.cashValue(parseInt(store.state.emulator.cashReader.value) + value)
+    }
 
   }
 

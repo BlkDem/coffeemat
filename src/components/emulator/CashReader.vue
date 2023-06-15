@@ -22,7 +22,7 @@ import { mapActions } from 'vuex';
 
 export default (await import('vue')).defineComponent({
 
-  emits: ['pay', 'cancel'],
+  emits: ['pay', 'cancel', 'addCash'],
 
   computed: {
     visible() {
@@ -54,7 +54,7 @@ export default (await import('vue')).defineComponent({
     },
 
     addMoney(value: number) {
-      this.cashValue(parseInt(store.state.emulator.cashReader.value) + value)
+      this.$emit('addCash', value);
     }
   },
 

@@ -1,6 +1,6 @@
 <template>
   <div class="device" v-if="visible">
-    <div class="led-display">Ready to accept card</div>
+    <div class="led-display">{{ message }}</div>
     <div class="buttons">
       <button @click="succes" class="c-button">Success</button>
       <button @click="error"  class="c-button">Error</button>
@@ -20,6 +20,10 @@ export default (await import('vue')).defineComponent({
   computed: {
     visible() {
       return store.state.emulator.cardReader.active;
+    },
+
+    message() {
+      return store.state.emulator.cardReader.status ?? 'Ready to accept card'
     }
   },
 

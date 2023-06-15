@@ -17,7 +17,6 @@ export default (await import('vue')).defineComponent({
 
   name: 'info-page',
 
-
   data() {
     return {
       information: 'Information'

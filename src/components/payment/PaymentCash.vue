@@ -6,8 +6,8 @@
 
       <DrinkCardOrder
         :card-name="drinkCard?.name"
-        :milk="milk"
-        :sugar="sugar"
+        :milk="addons.milk"
+        :sugar="addons.sugar"
       ></DrinkCardOrder>
 
     </div>
@@ -58,8 +58,10 @@ export default (await import('vue')).defineComponent({
 
       drinkCard: {} as DrinkCardType,
 
-      milk: 0,
-      sugar: 0
+      addons: {
+        milk: 0,
+        sugar: 0
+      }
 
     }
   },
@@ -70,8 +72,8 @@ export default (await import('vue')).defineComponent({
 
     this.cashActive(true);
 
-    this.milk = store.state.milk ?? 0;
-    this.sugar = store.state.sugar ?? 0;
+    this.addons.milk = store.state.addons.milk ?? 0;
+    this.addons.sugar = store.state.addons.sugar ?? 0;
 
     this.drinkCard = store.state.currentDrinkCard ??
       store.state.data.filter(
