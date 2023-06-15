@@ -34,7 +34,7 @@
 
 <script lang="ts">
 
-import TopMessage from '@/components/TopMessage.vue';
+import TopMessage from '@/components/common/TopMessage.vue';
 import EmulatorState from '@/components/emulator/EmulatorState.vue';
 
 export default (await import('vue')).defineComponent({

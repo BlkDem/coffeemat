@@ -8,7 +8,7 @@
 <script lang="ts">
 
 import store from '@/store';
-import PaymentCash from '../components/PaymentCash.vue';
+import PaymentCash from '../components/payment/PaymentCash.vue';
 import { DrinkCardType } from '@/types';
 
 export default (await import('vue')).defineComponent({

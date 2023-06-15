@@ -26,11 +26,13 @@ export default createStore({
     emulator: {
       cardReader: {
         active: false,
-        value: 0,
+        value: '',
+        status: ''
       },
       cashReader: {
         active: false,
-        value: 0,
+        value: '',
+        status: ''
       },
     }
   },
@@ -54,6 +56,14 @@ export default createStore({
 
     emulatorState(state) {
       return state;
+    },
+
+    cardReaderStatus(state) {
+      return state.emulator.cardReader.status;
+    },
+
+    cashReaderStatus(state) {
+      return state.emulator.cashReader.status;
     },
 
     cardReaderState(state) {
@@ -116,6 +126,14 @@ export default createStore({
       state.emulator.cardReader.value = value
     },
 
+    setCardReaderStatus(state, value) {
+      state.emulator.cardReader.status = value
+    },
+
+    setCashReaderStatus(state, value) {
+      state.emulator.cashReader.status = value
+    },
+
   },
 
   actions: {
@@ -156,6 +174,14 @@ export default createStore({
 
     cardActive({ commit }, value){
       commit('setCardReaderActive', value)
+    },
+
+    cardStatus({ commit }, value){
+      commit('setCardReaderStatus', value)
+    },
+
+    cashStatus({ commit }, value){
+      commit('setCashReaderStatus', value)
     },
 
   },

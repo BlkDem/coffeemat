@@ -48,42 +48,13 @@ export default (await import('vue')).defineComponent({
 <style lang="scss" scoped>
 
 @import '@/sass/led.scss';
+@import '@/sass/buttons.scss';
 
 .device{
   width: 350px;
   height: 146px;
   border: 4px solid;
   border-radius: 16px;
-}
-  .buttons {
-    display: flex;
-    justify-content: space-evenly;
-  }
-
-  .c-button {
-    appearance: none;
-    display: flex;
-    font-size: 1.2rem;
-    background: var(--coffee-color);
-    color: var(--main-color);
-    margin: 16px 8px;
-    padding: 8px 16px;
-    font-size: 16px;
-    border: 2px solid var(--main-color);
-    border-radius: 4px;
-    height: 48px;
-    width: 150px;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .c-button:hover {
-    background: #1d49aa;
-  }
-
-.c-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px #cbd6ee;
 }
 
 </style>

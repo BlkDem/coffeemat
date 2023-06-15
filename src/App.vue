@@ -15,7 +15,7 @@
 <script lang="ts">
 
 import {mapActions} from 'vuex';
-import VerticalLayout from './layouts/VerticalLayout.vue';
+import VerticalLayout from './layouts/MainLayout.vue';
 
 export default (await import('vue')).defineComponent({
   components: {

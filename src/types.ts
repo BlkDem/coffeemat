@@ -15,12 +15,12 @@ export interface DrinkCardTypeResponse {
 
 export interface CardReader {
   active: boolean,
-  value: number,
+  value: number | string,
 }
 
 export interface CashReader {
   active: boolean,
-  value: number,
+  value: number | string,
 }
 
 export interface Emulator {

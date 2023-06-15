@@ -1,5 +1,11 @@
 @import "./const.scss";
 
+@font-face {
+  font-family: 'Robo';
+  src: url('@/assets/fonts/robo.otf');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body, html {
   margin: 0;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="emulator">
     <h2>Current Drink</h2>
     <ul  v-if="currentDrink?.id >= 0">
       <li>
@@ -31,12 +31,12 @@
         </span>
       </li>
       <li>CardReader.Value:
-        <span :class="{'active': emulator.cardReader.value > 0, 'not-active': !(emulator.cardReader.value > 0)}">
+        <span :class="{'active': emulator.cardReader.value != '', 'not-active': (!emulator.cardReader.value)}">
           {{ emulator.cardReader.value }}
         </span>
       </li>
       <li>CashReader.Value:
-        <span :class="{'active': emulator.cashReader.value > 0, 'not-active': !(emulator.cashReader.value > 0)}">
+        <span :class="{'active': emulator.cashReader.value != '', 'not-active': (!emulator.cashReader.value)}">
           {{ emulator.cashReader.value }}
         </span>
       </li>
@@ -46,8 +46,8 @@
       @error="onCardError"
     />
     <CashReader
-      @success="onCashPay"
-      @error="onCashCancel"
+      @pay="onCashPay"
+      @cancel="onCashCancel"
     />
   </div>
 </template>
@@ -58,6 +58,7 @@ import store from '@/store';
 import {mapActions} from 'vuex';
 import CardReader from './CardReader.vue';
 import CashReader from './CashReader.vue';
+import { Emulator } from './emulator';
 
 export default (await import('vue')).defineComponent({
 
@@ -106,15 +107,23 @@ export default (await import('vue')).defineComponent({
     },
 
     onCardSuccess() {
-      console.log('Payment success!');
+      console.log('Cmd: Payment success!');
     },
 
     onCashCancel() {
-      console.log('Payment cancel!');
+      console.log('Cmd: Payment cancel!');
+      const e = new Emulator();
+      e.payCashCancel(() => {
+        console.log('pay cash cancel callback');
+      })
     },
 
     onCashPay() {
       console.log('Payment in progress!');
+      const e = new Emulator();
+      e.payCashPay(() => {
+        console.log('pay cash success callback');
+      })
     },
 
 
@@ -126,6 +135,9 @@ export default (await import('vue')).defineComponent({
 
 <style lang="scss" scoped>
 
+.emulator {
+  font-family: 'Robo';
+}
 .active {
   color: green;
 }
