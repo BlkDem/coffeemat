@@ -46,28 +46,15 @@ export default (await import('vue')).defineComponent({
 </script>
 
 <style lang="scss" scoped>
+
+@import '@/sass/led.scss';
+
 .device{
   width: 350px;
   height: 146px;
   border: 4px solid;
   border-radius: 16px;
 }
-
-.led-display {
-  display: flex;
-  width: 334px;
-  height: 48px;
-  margin: 8px 8px;
-  border-radius: 8px;
-  color: #0b0c0d;
-  font-size: 1.2rem;
-  background-color: #baebf6;
-  box-shadow: 0 0 8px 8px var(--coffee-color);
-  align-items: center;
-  justify-content: center;
-  font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-  }
-
   .buttons {
     display: flex;
     justify-content: space-evenly;

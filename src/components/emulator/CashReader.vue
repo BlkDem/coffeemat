@@ -8,7 +8,8 @@
       <button @click="addMoney(200)" class="c-button">200</button>
     </div>
     <div class="buttons">
-      <button @click="pay" class="c-button">Pay</button>
+      <button @click="pay" class="c-button"
+        :disabled='(cash.toString() < drinkCost)'>Pay</button>
       <button @click="cancel"  class="c-button">Cancel</button>
     </div>
 </div>
@@ -30,7 +31,12 @@ export default (await import('vue')).defineComponent({
 
     cash() {
       return store.state.emulator.cashReader.value;
+    },
+
+    drinkCost() {
+      return store.state.currentDrinkCard.price;
     }
+
   },
 
   methods: {
@@ -57,26 +63,14 @@ export default (await import('vue')).defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.device{
-  width: 350px;
-  height: 222px;
-  border: 4px solid;
-  border-radius: 16px;
-}
 
-.led-display {
-  display: flex;
-  width: 334px;
-  height: 48px;
-  margin: 8px 8px;
-  border-radius: 8px;
-  color: #0b0c0d;
-  font-size: 1.2rem;
-  background-color: #baebf6;
-  box-shadow: 0 0 8px 8px var(--coffee-color);
-  align-items: center;
-  justify-content: center;
-  font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+@import '@/sass/led.scss';
+
+  .device{
+    width: 350px;
+    height: 222px;
+    border: 4px solid;
+    border-radius: 16px;
   }
 
   .buttons {
@@ -104,10 +98,14 @@ export default (await import('vue')).defineComponent({
   .c-button:hover {
     background: #1d49aa;
   }
+  .c-button[disabled] {
+    background: gray;
+  }
 
-.c-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px #cbd6ee;
-}
+  .c-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px #cbd6ee;
+  }
+
 
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Current Drink</h2>
-    <ul>
+    <ul  v-if="currentDrink?.id >= 0">
       <li>
         {{ currentDrink.id }} {{ currentDrink.name }}
       </li>

@@ -56,7 +56,7 @@ export default (await import('vue')).defineComponent({
   data() {
     return {
 
-      payName: 'Insert a payment card',
+      payName: 'Insert payment card',
 
       drinkCard: {} as DrinkCardType,
 
@@ -76,9 +76,8 @@ export default (await import('vue')).defineComponent({
     this.milk = store.state.milk ?? 0;
     this.sugar = store.state.sugar ?? 0;
     this.drinkCard = store.state.currentDrinkCard ??
-      store.state.drinkCards.filter(
+      store.state.data.filter(
         (item: DrinkCardType) => item.id.toString()  === this.cardId)[0] as DrinkCardType;
-        // console.log(this.drinkCard)
   },
 
   beforeUnmount() {

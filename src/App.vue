@@ -31,7 +31,7 @@ export default (await import('vue')).defineComponent({
   },
 
   async mounted() {
-    await this.getData();
+    await this.getData('cache');
   },
 
   methods: {
