@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Current Drink</h2>
-    <ul>
+    <ul  v-if="currentDrink?.id >= 0">
       <li>
         {{ currentDrink.id }} {{ currentDrink.name }}
       </li>
@@ -41,15 +41,27 @@
         </span>
       </li>
     </ul>
-
+    <CardReader
+      @success="onCardSuccess"
+      @error="onCardError"
+    />
+    <CashReader
+      @success="onCashPay"
+      @error="onCashCancel"
+    />
   </div>
 </template>
 
 <script lang="ts">
+
 import store from '@/store';
 import {mapActions} from 'vuex';
+import CardReader from './CardReader.vue';
+import CashReader from './CashReader.vue';
 
 export default (await import('vue')).defineComponent({
+
+  components: { CardReader, CashReader },
 
   data() {
     return {}
@@ -88,6 +100,24 @@ export default (await import('vue')).defineComponent({
       cashActive: 'cashActive',
       cardActive: 'cardActive',
     }),
+
+    onCardError() {
+      console.log('Payment error!');
+    },
+
+    onCardSuccess() {
+      console.log('Payment success!');
+    },
+
+    onCashCancel() {
+      console.log('Payment cancel!');
+    },
+
+    onCashPay() {
+      console.log('Payment in progress!');
+    },
+
+
   }
 
 })
@@ -95,6 +125,7 @@ export default (await import('vue')).defineComponent({
 </script>
 
 <style lang="scss" scoped>
+
 .active {
   color: green;
 }

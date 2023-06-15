@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Robo';
+  src: url('@/assets/fonts/robo.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.led-display {
+  display: flex;
+  width: 334px;
+  height: 48px;
+  margin: 8px 8px;
+  padding-top: 4px;
+  border-radius: 8px;
+  color: #2f557c;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: #baebf6;
+  box-shadow: inset 0 0 12px 1px var(--coffee-color);
+  align-items: center;
+  justify-content: center;
+  font-family: "Robo", Robo;
+}

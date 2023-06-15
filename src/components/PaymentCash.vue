@@ -17,6 +17,7 @@
     <div class="card-content-detail" style="background-position: center; background-size: 120%;" :style="{
           backgroundImage: `url(${require('@/assets/images/money.jpg')})` }">
           <h2>{{ payName }}</h2>
+          <h1>{{ cash }}</h1>
           <PaySum
             :pay-name="'Sum to pay'"
             :pay-sum="drinkCard?.price"
@@ -32,6 +33,7 @@
 <script lang="ts">
 
 import store from '@/store';
+import { mapActions } from 'vuex';
 import { DrinkCardType } from '@/types';
 import DrinkCardOrder from './DrinkCardOrder.vue';
 import PaySum from './PaySum.vue';
@@ -66,13 +68,32 @@ export default (await import('vue')).defineComponent({
 
     store.commit('caption', 'Payment Cash');
 
+    this.cashActive(true);
+
     this.milk = store.state.milk ?? 0;
     this.sugar = store.state.sugar ?? 0;
-    this.drinkCard = store.state.drinkCards.filter(
+
+    this.drinkCard = store.state.currentDrinkCard ??
+      store.state.data.filter(
         (item: DrinkCardType) => item.id.toString()  === this.cardId)[0] as DrinkCardType;
-        console.log(this.drinkCard)
   },
 
+  beforeUnmount() {
+    this.cashActive(false);
+  },
+
+  methods: {
+    ...mapActions({
+      cashActive: 'cashActive',
+      cashValue: 'cashValue',
+    }),
+  },
+
+  computed: {
+    cash() {
+      return store.state.emulator.cashReader.value;
+    }
+  }
 
 })
 
@@ -81,5 +102,9 @@ export default (await import('vue')).defineComponent({
 <style lang="scss" scoped>
 @import '@/sass/cards.scss';
 
+h1 {
+  text-align: right;
+  font-size: 8rem;
+}
 
 </style>

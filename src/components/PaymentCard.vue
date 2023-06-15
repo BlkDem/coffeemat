@@ -35,6 +35,7 @@
 <script lang="ts">
 
 import store from '@/store';
+import { mapActions } from 'vuex';
 import { DrinkCardType } from '@/types';
 import DrinkCardOrder from './DrinkCardOrder.vue';
 import PaySum from './PaySum.vue';
@@ -55,7 +56,7 @@ export default (await import('vue')).defineComponent({
   data() {
     return {
 
-      payName: 'Insert a payment card',
+      payName: 'Insert payment card',
 
       drinkCard: {} as DrinkCardType,
 
@@ -70,12 +71,25 @@ export default (await import('vue')).defineComponent({
 
     store.commit('caption', 'Payment Card');
 
+    this.cardActive(true);
+
     this.milk = store.state.milk ?? 0;
     this.sugar = store.state.sugar ?? 0;
-    this.drinkCard = store.state.drinkCards.filter(
+    this.drinkCard = store.state.currentDrinkCard ??
+      store.state.data.filter(
         (item: DrinkCardType) => item.id.toString()  === this.cardId)[0] as DrinkCardType;
-        console.log(this.drinkCard)
   },
+
+  beforeUnmount() {
+    this.cardActive(false);
+  },
+
+  methods: {
+    ...mapActions({
+      cardActive: 'cardActive',
+    }),
+
+  }
 
 
 })

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="cards">
-        <DrinkCard  v-for="(card, key) in drinkCards" :key="key"
+        <DrinkCard  v-for="(card, key) in data" :key="key"
           :card-drink="card"
         >
         </DrinkCard>
@@ -21,13 +21,13 @@ export default (await import('vue')).defineComponent({
   },
 
   computed: {
-    drinkCards() {
-      return store.state.drinkCards;
+    data() {
+      return store.state.data;
     }
   },
 
   async mounted() {
-    store.commit('caption', 'Select a drink')
+    store.commit('caption', 'Select drink')
     store.commit('SET_MILK', 0)
     store.commit('SET_SUGAR', 0)
   },

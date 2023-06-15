@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import createPersistedState from 'vuex-persistedstate'
-import { DrinkCardType, Emulator} from "@/types";
+
+import { DrinkCardType } from "@/types";
 import { getData } from '@/services/DataRepositoryService';
 
 export default createStore({
@@ -8,11 +9,11 @@ export default createStore({
   state: {
     //page caption
     page: {
-      caption: 'Select a drink'
+      caption: 'Select drink'
     },
 
     //drinks db
-    drinkCards: [],
+    data: [] as DrinkCardType[],
 
     //selected drnk
     currentDrinkCard: {} as DrinkCardType,
@@ -21,6 +22,7 @@ export default createStore({
     milk: 0,
     sugar: 0,
 
+    //emulator
     emulator: {
       cardReader: {
         active: false,
@@ -31,8 +33,6 @@ export default createStore({
         value: 0,
       },
     }
-
-
   },
 
   getters: {
@@ -41,7 +41,7 @@ export default createStore({
     },
 
     getCards(state) {
-      return state.drinkCards as DrinkCardType[];
+      return state.data as DrinkCardType[];
     },
 
     milk(state) {
@@ -80,11 +80,11 @@ export default createStore({
     },
 
     SET_DATA(state, value) {
-      state.drinkCards = value
+      state.data = value
     },
 
     SET_CURRENT(state, value) {
-      console.log('set_current', value)
+      // console.log('set_current', value)
       state.currentDrinkCard = value;
     },
 
@@ -109,7 +109,6 @@ export default createStore({
     },
 
     setCashReaderValue(state, value) {
-      console.log(state, value)
       state.emulator.cashReader.value = value
     },
 
@@ -121,6 +120,12 @@ export default createStore({
 
   actions: {
 
+    async getData({commit}, value){
+      return await getData(value).then((data)=>{
+          commit('SET_DATA', data)
+      })
+    },
+
     caption({commit}){
       commit('caption', commit)
     },
@@ -131,12 +136,6 @@ export default createStore({
 
     sugar({commit}){
       commit('SET_SUGAR', commit)
-    },
-
-    async getData({commit}){
-      return await getData().then((data)=>{
-          commit('SET_DATA', data)
-      })
     },
 
     current({commit}) {

@@ -41,7 +41,7 @@ export default (await import('vue')).defineComponent({
 
   components: {
     TopMessage,
-    EmulatorState
+    EmulatorState,
   },
 
 })
@@ -101,7 +101,7 @@ export default (await import('vue')).defineComponent({
 
   .emulator-panel {
     position: absolute;
-    right: 0;
+    left: calc($vertical-width + 50px);
     top: 0;
     margin: 16px 16px;
     width: 400px;
