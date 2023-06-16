@@ -69,7 +69,7 @@ export default (await import('vue')).defineComponent({
     .brand {
       display: flex;
       justify-content: center;
-      background-color: wheat;
+      background-color: var(--main-color);
       height: $topbar-height;
       width: 100px;
       margin-left: 32px;

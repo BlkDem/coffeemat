@@ -1,5 +1,5 @@
 <template>
-  <VerticalLayout>
+  <MainLayout>
 
     <template v-slot:main>
       <router-view />
@@ -8,18 +8,18 @@
     <template v-slot:info>
 
     </template>
-  </VerticalLayout>
+  </MainLayout>
 
 </template>
 
 <script lang="ts">
 
 import {mapActions} from 'vuex';
-import VerticalLayout from './layouts/MainLayout.vue';
+import MainLayout from './layouts/MainLayout.vue';
 
 export default (await import('vue')).defineComponent({
   components: {
-    VerticalLayout
+    MainLayout
   },
 
   data() {

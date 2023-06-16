@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import ChooseDrinkView from "../views/ChooseDrinkView.vue";
+import ChooseDrinkView from "@/views/ChooseDrinkView.vue";
 import SelectedDrinkView from "@/views/SelectedDrinkView.vue";
 import PaymentCardView from "@/views/PaymentCardView.vue";
 import PaymentCashView from "@/views/PaymentCashView.vue";
-import InfoPageView from '@/views/InfoPageView.vue';
-import PrepareView from '@/views/PrepareView.vue';
+import InfoPageView from "@/views/InfoPageView.vue";
+import PrepareView from "@/views/PrepareView.vue";
+import DrinkReadyView from "@/views/DrinkReadyView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -29,13 +30,18 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/info",
-    name: "information",
+    name: "Information",
     component: InfoPageView,
   },
   {
     path: "/prepare",
-    name: "information",
+    name: "Prepare",
     component: PrepareView,
+  },
+  {
+    path: "/ready",
+    name: "Reafy",
+    component: DrinkReadyView,
   },
 ];
 

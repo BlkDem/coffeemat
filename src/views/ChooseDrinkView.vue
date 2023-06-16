@@ -13,6 +13,7 @@
 
 import store from '@/store';
 import GoodCard from '@/components/GoodCard.vue';
+import { DrinkCardType } from '@/types';
 
 export default (await import('vue')).defineComponent({
 
@@ -27,9 +28,12 @@ export default (await import('vue')).defineComponent({
   },
 
   async mounted() {
-    store.commit('caption', 'Select drink')
-    store.commit('SET_MILK', 0)
-    store.commit('SET_SUGAR', 0)
+    store.commit('caption', 'Select drink');
+    store.commit('setMilk', 0);
+    store.commit('setSugar', 0);
+    store.commit('machineProgress', 0);
+    store.commit('setCardReaderStatus', 'Ready to accept card');
+    store.commit('setCurrent', {} as DrinkCardType);
   },
 
 })

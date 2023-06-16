@@ -1,7 +1,14 @@
 <template>
   <div class="info-page">
     <div class="info-page-detail">
-      <h1>{{ infoText }}</h1>
+      <div>
+        <h1>{{ infoText }}</h1>
+      </div>
+      <div class="buttons">
+        <a @click="$router.go(-1)" class="pointer">
+          <font-awesome-icon :icon="['fa', 'fa-circle-arrow-left']" size="2xl" />
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -9,6 +16,7 @@
 <script lang="ts">
 
 import store from '@/store';
+import router from '@/router';
 
 export default (await import('vue')).defineComponent({
 
@@ -28,7 +36,7 @@ export default (await import('vue')).defineComponent({
     infoText() {
       return store.state.infoText;
     }
-  }
+  },
 
 })
 
@@ -36,6 +44,15 @@ export default (await import('vue')).defineComponent({
 
 <style lang="scss" scoped>
 @import '@/sass/const.scss';
+
+a {
+  color: var(--coffee-color);
+  font-size: 3rem;
+}
+
+.buttons {
+  margin: 16px 16px;
+}
 .info-page {
   height: calc($vertical-height - $topbar-height - 80px);
 }
@@ -51,10 +68,12 @@ export default (await import('vue')).defineComponent({
   justify-content: center;
   align-items: center;
   font: inherit;
+  flex-direction: column;
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 3rem;
+  text-shadow: none;
 }
 
 </style>

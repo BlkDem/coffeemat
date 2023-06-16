@@ -121,20 +121,19 @@ export default createStore({
       state.page.caption = value
     },
 
-    SET_DATA(state, value) {
+    setData(state, value) {
       state.data = value
     },
 
-    SET_CURRENT(state, value) {
-      // console.log('set_current', value)
+    setCurrent(state, value) {
       state.currentDrinkCard = value;
     },
 
-    SET_MILK(state, value) {
+    setMilk(state, value) {
       state.addons.milk = value;
     },
 
-    SET_SUGAR(state, value) {
+    setSugar(state, value) {
       state.addons.sugar = value;
     },
 
@@ -176,7 +175,7 @@ export default createStore({
 
     async getData({commit}, value){
       return await getData(value).then((data)=>{
-          commit('SET_DATA', data)
+          commit('setData', data)
       })
     },
 
@@ -197,15 +196,15 @@ export default createStore({
     },
 
     milk({commit}){
-      commit('SET_MILK', commit)
+      commit('setMilk', commit)
     },
 
     sugar({commit}){
-      commit('SET_SUGAR', commit)
+      commit('setSugar', commit)
     },
 
     current({commit}) {
-      commit('SET_CURRENT', commit);
+      commit('setCurrent', commit);
     },
 
     cardValue({ commit }, value){

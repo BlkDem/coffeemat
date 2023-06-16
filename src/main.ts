@@ -17,6 +17,7 @@ import {faCircleArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {faMugHot} from "@fortawesome/free-solid-svg-icons";
 import {faCreditCard} from "@fortawesome/free-regular-svg-icons";
 import {faHourglassHalf} from "@fortawesome/free-regular-svg-icons";
+import {faHouse} from "@fortawesome/free-solid-svg-icons";
 // import {facu} from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -29,7 +30,8 @@ library.add(
   faPlusCircle,
   faMugHot,
   faCreditCard,
-  faHourglassHalf
+  faHourglassHalf,
+  faHouse
 );
 
 createApp(App).use(store).use(router).component('font-awesome-icon', FontAwesomeIcon).mount("#app");

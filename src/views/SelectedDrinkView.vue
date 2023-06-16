@@ -29,7 +29,7 @@ export default (await import('vue')).defineComponent({
       this.drinkCard = store.state.data.filter(
         (item: DrinkCardType) => item.id.toString()  === this.$route.params?.id)[0] as DrinkCardType;
       store.commit('caption', this.drinkCard?.name ?? 'undefined')
-      store.commit('SET_CURRENT', this.drinkCard ?? 'undefined')
+      store.commit('setCurrent', this.drinkCard ?? 'undefined')
 
   },
 
