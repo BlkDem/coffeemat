@@ -2,7 +2,7 @@
   <div class="device" v-if="visible">
     <div class="led-display">{{ message }}</div>
     <div class="buttons">
-      <button @click="succes" class="c-button">Success</button>
+      <button @click="succes" class="c-button" :disabled="isDisabled">Success</button>
       <button @click="error"  class="c-button">Error</button>
     </div>
 </div>
@@ -23,8 +23,13 @@ export default (await import('vue')).defineComponent({
     },
 
     message() {
-      return store.state.emulator.cardReader.status ?? 'Ready to accept card'
+      return store.state.emulator.cardReader.status || 'Ready to accept card'
+    },
+
+    isDisabled() {
+      return store.state.machine.progress > 0
     }
+
   },
 
   methods: {
@@ -40,6 +45,7 @@ export default (await import('vue')).defineComponent({
     error() {
       this.$emit('error');
     },
+
   },
 
   beforeUnmount() {

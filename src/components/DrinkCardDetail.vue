@@ -82,15 +82,16 @@ export default (await import('vue')).defineComponent({
   },
 
   created() {
-
     this.drinkCard = store.state.currentDrinkCard ??
       store.state.data.filter(
-        (item: DrinkCardType) => item.id.toString()  === this.cardId)[0] as DrinkCardType;
+        (item: DrinkCardType) => item.id.toString()  === this.cardId)[0] ?? {} as DrinkCardType;
   },
 
   methods: {
     addonCountChange(name: string, value: number) {
-      store.commit('SET_' + name.toUpperCase(), value);
+      const n = name.split('');
+      n[0] = n[0].toUpperCase();
+      store.commit('set' + n.join(''), value);
     }
   }
 

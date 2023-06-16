@@ -105,8 +105,10 @@ export default (await import('vue')).defineComponent({
 @import '@/sass/cards.scss';
 
 h1 {
-  text-align: right;
-  font-size: 8rem;
+  text-align: center;
+  font-size: 7rem;
+  color: var(--main-color);
+  text-shadow: 0 0 16px var(--coffee-color);
 }
 
 </style>

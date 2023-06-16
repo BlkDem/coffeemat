@@ -3,14 +3,17 @@
     <div class="info-page-detail">
       <!-- <h1 class="font-3rem">Preparing drink</h1> -->
       <div class="shadow font-10rem">
-        <font-awesome-icon :icon="['far', 'hourglass-half']" spin />
+        <font-awesome-icon :icon="['fa', 'mug-hot']" />
       </div>
 
-      <div class="progress-items">
-        <div v-for="item in 9" :key="item">
-          <div class="progress-item" :class="{'opacity-09': (progress)>(item)}"></div>
-        </div>
+      <div>
+        <h1 class="font-3rem">Have a nice day!</h1>
       </div>
+
+      <div>
+        <h2>Home after <span :class="{'opacity-09': countDown}">{{ countDown }}</span></h2>
+      </div>
+
     </div>
 
   </div>
@@ -18,6 +21,7 @@
 
 <script lang="ts">
 
+import router from '@/router';
 import store from '@/store';
 
 export default (await import('vue')).defineComponent({
@@ -26,12 +30,17 @@ export default (await import('vue')).defineComponent({
 
   data() {
     return {
-      information: 'Preparing drink'
+      information: 'Drink ready!',
+      countDown: 10,
     }
   },
 
   created() {
     store.commit('caption', this.information);
+  },
+
+  mounted() {
+      this.homeCountDown();
   },
 
   computed: {
@@ -43,6 +52,21 @@ export default (await import('vue')).defineComponent({
       return store.state.machine.progress;
     }
 
+  },
+
+  methods: {
+    async homeCountDown() {
+      const c = this.countDown;
+      for (let i=c; i>0; i--) {
+        await new Promise((resolve) => {
+          setTimeout(()=>{
+            this.countDown--;
+            resolve(true);
+          }, 1000);
+        })
+      }
+      router.push('/');
+    }
   }
 
 })
@@ -78,23 +102,6 @@ h1 {
 }
 .font-10rem {
   font-size: 10rem;
-}
-
-.progress-items{
-  width: 800px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 64px;
-}
-
-.progress-item{
-  background-color: var(--coffee-color);
-  width: 64px;
-  height: 80px;
-  opacity: 0;
-  transition: all .5s;
-  border-radius: 16px;
 }
 
 .opacity-09 {

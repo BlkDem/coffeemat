@@ -25,14 +25,14 @@
           {{ emulator.cardReader.active }}
         </span>
       </li>
-      <li>CashReader.Active:
-        <span :class="{'active': emulator.cashReader.active, 'not-active': !emulator.cashReader.active}">
-          {{ emulator.cashReader.active }}
-        </span>
-      </li>
       <li>CardReader.Value:
         <span :class="{'active': emulator.cardReader.value != '', 'not-active': (!emulator.cardReader.value)}">
           {{ emulator.cardReader.value }}
+        </span>
+      </li>
+      <li>CashReader.Active:
+        <span :class="{'active': emulator.cashReader.active, 'not-active': !emulator.cashReader.active}">
+          {{ emulator.cashReader.active }}
         </span>
       </li>
       <li>CashReader.Value:
@@ -40,6 +40,11 @@
           {{ emulator.cashReader.value }}
         </span>
       </li>
+
+      <li v-if="cash">Cache.Status:
+          {{ cash }}
+      </li>
+
       <li>Machine.Active:
         <span :class="{'active': machineActive, 'not-active': !machineActive}">
           {{ machineActive }}
@@ -106,6 +111,10 @@ export default (await import('vue')).defineComponent({
 
     machineActive() {
       return store.state.machine.active;
+    },
+
+    cash() {
+      return store.state.emulator.cashReader.status;
     }
   },
 
@@ -143,15 +152,27 @@ export default (await import('vue')).defineComponent({
         console.log('oga',value);
       })
 
+      store.commit('machineProgress', 1);
+
       router.push('/prepare');
 
       await e1.prepareDrink((value)=>{
-        console.log('drink ready:', value);
+        // console.log('drink ready:', value);
+        router.push('/ready');
       })
 
     },
 
     onCashCancel() {
+      if (parseInt(store.state.emulator.cashReader.value ?? 0) > 0) {
+        this.cashValue('Money back');
+        setTimeout(() => {
+          // this.cashStatus('');
+          this.cashValue(0);
+          router.push('/');
+        }, 2000)
+      }
+      this.cashStatus
       e1.payCashCancel((value) => {
         console.log(value);
       })
@@ -159,7 +180,15 @@ export default (await import('vue')).defineComponent({
 
     onCashPay() {
       e1.payCashPay((value) => {
-        console.log(value);
+
+        store.commit('machineProgress', 1);
+        router.push('/prepare');
+
+        e1.prepareDrink((value)=>{
+          this.cashValue(0);
+          router.push('/ready');
+        })
+
       })
     },
 
